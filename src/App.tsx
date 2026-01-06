@@ -8,15 +8,22 @@ import { Settings } from "./Logic/types";
 
 const App = () => {
   const [value, setValue] = useState<string>("");
-  const [lang, setLang] = useState<Settings>(JsonType);
+  const [fromLang, setFromLang] = useState<Settings>(JsonType);
+  const [toLang, setToLang] = useState<Settings>(JsonType);
   return (
     <>
       <LanguageDropdown
-        currSelection={lang.language}
-        setOption={(res) => setLang(getSettings(res))}
+        label="From Format"
+        currSelection={fromLang.language}
+        setOption={(res) => setFromLang(getSettings(res))}
       />
       <InputField placeholder="Input Data" setValue={setValue} />
-      <CodeEditor languageSetting={lang} value={value} />
+      <LanguageDropdown
+        label="To Format"
+        currSelection={toLang.language}
+        setOption={(res) => setToLang(getSettings(res))}
+      />
+      <CodeEditor languageSetting={fromLang} value={value} />
     </>
   );
 };

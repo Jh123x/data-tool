@@ -3,3 +3,5 @@ export enum SupportedLanguage {
   tsv = "tsv",
   csv = "csv",
 }
+
+export type Data = Array<Record<string, any>>;

@@ -1,4 +1,4 @@
-import { SupportedLanguage } from "../Components/types";
+import { Data, SupportedLanguage } from "../Components/types";
 import type { Settings } from "./types";
 
 export const JsonType: Settings = {
@@ -9,5 +9,11 @@ export const JsonType: Settings = {
     } catch {
       return code;
     }
+  },
+  fromType: (code: string): Data => {
+    return JSON.parse(code);
+  },
+  toType: (data: Data): string => {
+    return JSON.stringify(data);
   },
 };
