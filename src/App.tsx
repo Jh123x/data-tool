@@ -1,4 +1,3 @@
-import { error } from "console";
 import React, { useEffect, useState } from "react";
 import { CodeEditor } from "./Components/CodeEditor";
 import { CopyButton } from "./Components/CopyButton";
