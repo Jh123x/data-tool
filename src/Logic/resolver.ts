@@ -1,9 +1,8 @@
 import { CsvType } from "./csv";
 import { JsonType } from "./json";
-import { TsvType } from "./tsv";
 import { Settings } from "./types";
 
-const ALL_DATA: Settings[] = [JsonType, TsvType, CsvType];
+export const ALL_DATA: Settings[] = [JsonType, CsvType];
 
 export const getSettings = (res: string): Settings => {
   for (const curr of ALL_DATA) {

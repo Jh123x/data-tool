@@ -17,6 +17,7 @@ export const CodeEditor = ({ value, languageSetting }: EditorProp) => {
       <SyntaxHighlighter
         language={languageSetting.language}
         showInlineLineNumbers={true}
+        wrapLongLines={true}
       >
         {results}
       </SyntaxHighlighter>

@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@vanillaes/csv": "^3.0.4",
     "antd": "^6.1.4",
     "csv-parser": "^3.2.0",
     "csv-string": "^4.1.1",

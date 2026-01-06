@@ -1,10 +1,7 @@
-import { Dropdown, Button, Grid } from "antd";
-import CardGrid from "antd/es/card/CardGrid";
+import { Dropdown, Button } from "antd";
 import Layout from "antd/es/layout/layout";
 import Typography from "antd/es/typography/Typography";
-import { CsvType } from "../Logic/csv";
-import { JsonType } from "../Logic/json";
-import { TsvType } from "../Logic/tsv";
+import { ALL_DATA } from "../Logic/resolver";
 
 interface DropdownProps {
   label: string;
@@ -17,7 +14,7 @@ export const LanguageDropdown = ({
   currSelection,
   setOption,
 }: DropdownProps) => {
-  const ALL_OPTIONS = [JsonType, TsvType, CsvType].map((v) => ({
+  const ALL_OPTIONS = ALL_DATA.map((v) => ({
     key: v.language,
     label: (
       <Typography

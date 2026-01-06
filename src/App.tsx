@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { error } from "console";
+import React, { useEffect, useState } from "react";
 import { CodeEditor } from "./Components/CodeEditor";
+import { CopyButton } from "./Components/CopyButton";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { JsonType } from "./Logic/json";
@@ -10,6 +12,21 @@ const App = () => {
   const [value, setValue] = useState<string>("");
   const [fromLang, setFromLang] = useState<Settings>(JsonType);
   const [toLang, setToLang] = useState<Settings>(JsonType);
+  const [targetValue, setTargetValue] = useState<string>("");
+
+  useEffect(() => {
+    if (value === "") {
+      setTargetValue("");
+      return;
+    }
+    try {
+      const tmp = fromLang.fromType(value);
+      const finalValue = toLang.toType(tmp);
+      setTargetValue(finalValue);
+    } catch (error) {
+      setTargetValue(String(error));
+    }
+  }, [value, fromLang, toLang]);
   return (
     <>
       <LanguageDropdown
@@ -23,7 +40,8 @@ const App = () => {
         currSelection={toLang.language}
         setOption={(res) => setToLang(getSettings(res))}
       />
-      <CodeEditor languageSetting={fromLang} value={value} />
+      <CodeEditor languageSetting={toLang} value={targetValue} />
+      <CopyButton value={targetValue} />
     </>
   );
 };
