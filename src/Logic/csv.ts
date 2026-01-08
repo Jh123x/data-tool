@@ -15,7 +15,7 @@ export const CsvType: Settings = {
 
     for (let rowIdx = 1; rowIdx < result.length; rowIdx++) {
       const row = result[rowIdx];
-      let obj = {};
+      let obj: Record<string, Array<string>> = {};
       for (let i = 0; i < header.length; i++) {
         obj[header[i]] = row[i];
       }
