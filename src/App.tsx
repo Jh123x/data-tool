@@ -6,6 +6,7 @@ import { InputField } from "./Components/InputField";
 import { JsonType } from "./Logic/json";
 import { getSettings } from "./Logic/resolver";
 import { Settings } from "./Logic/types";
+import { PageTitle } from "./Components/PageTitle";
 
 const App = () => {
   const [value, setValue] = useState<string>("");
@@ -28,6 +29,10 @@ const App = () => {
   }, [value, fromLang, toLang]);
   return (
     <>
+      <PageTitle
+        title="Data Converter"
+        subText="Convert data between different formats."
+      />
       <LanguageDropdown
         label="From Format"
         currSelection={fromLang.language}
