@@ -7,6 +7,8 @@ import { JsonType } from "./Logic/json";
 import { getSettings } from "./Logic/resolver";
 import { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
+import { CopyFormat } from "./Components/CopyFormat";
+import { Typography } from "antd";
 
 const App = () => {
   const [value, setValue] = useState<string>("");
@@ -33,6 +35,7 @@ const App = () => {
         title="Data Converter"
         subText="Convert data between different formats."
       />
+      <Typography>To Format</Typography>
       <LanguageDropdown
         label="From Format"
         currSelection={fromLang.language}
@@ -44,8 +47,9 @@ const App = () => {
         currSelection={toLang.language}
         setOption={(res) => setToLang(getSettings(res))}
       />
+      <Typography>To Format</Typography>
+      <CopyFormat fromLang={fromLang} value={value} />
       <CodeEditor languageSetting={toLang} value={targetValue} />
-      <CopyButton value={targetValue} />
     </>
   );
 };

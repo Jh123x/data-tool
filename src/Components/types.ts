@@ -5,3 +5,5 @@ export enum SupportedLanguage {
 }
 
 export type Data = Array<Record<string, any>>;
+
+export type NotificationType = "success" | "info" | "warning" | "error";

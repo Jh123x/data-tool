@@ -10,7 +10,6 @@ interface DropdownProps {
 }
 
 export const LanguageDropdown = ({
-  label,
   currSelection,
   setOption,
 }: DropdownProps) => {
@@ -26,6 +25,7 @@ export const LanguageDropdown = ({
       </Typography>
     ),
   }));
+
   return (
     <Layout
       style={{
@@ -33,7 +33,6 @@ export const LanguageDropdown = ({
         gap: "10px",
       }}
     >
-      <Typography>{label}</Typography>
       <Dropdown menu={{ items: ALL_OPTIONS }}>
         <Button>{currSelection ?? "Choose an option"}</Button>
       </Dropdown>
