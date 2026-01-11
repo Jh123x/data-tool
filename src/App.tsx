@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { CodeEditor } from "./Components/CodeEditor";
+import React, { Suspense, useEffect, useState } from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { JsonType } from "./Logic/json";
@@ -8,34 +7,34 @@ import { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
 import { CopyFormat } from "./Components/CopyFormat";
 import { notification, Typography } from "antd";
-import { setIsCopiedFactory } from "./Components/Copy";
+import type { Data } from "./Components/types";
 
 const App = () => {
   const [api, contextHolder] = notification.useNotification();
   const [value, setValue] = useState<string>("");
   const [fromLang, setFromLang] = useState<Settings>(JsonType);
   const [toLang, setToLang] = useState<Settings>(JsonType);
-  const [targetValue, setTargetValue] = useState<string>("");
-  const setNotification = setIsCopiedFactory(api);
+  const [ir, setIR] = useState<Data>([]);
 
   useEffect(() => {
-    if (value === "") {
-      setTargetValue("");
-      return;
-    }
-
     const [tmp, errMsg] = fromLang.fromType(value);
+
     if ((errMsg ?? "") !== "") {
-      setNotification({
-        type: "error",
+      api.error({
         title: "Error Format",
-        message: errMsg,
+        description: errMsg,
+        duration: 2,
       });
       return;
     }
-    const finalValue = toLang.toType(tmp);
-    setTargetValue(finalValue);
-  }, [value, fromLang, toLang, setNotification]);
+
+    setIR(tmp);
+  }, [fromLang, value, api]);
+
+  const CodeEditorComponent = React.lazy(
+    () => import("./Components/CodeEditor"),
+  );
+
   return (
     <>
       {contextHolder}
@@ -47,21 +46,19 @@ const App = () => {
       <LanguageDropdown
         label="From Format"
         currSelection={fromLang.language}
-        setOption={(res) => setFromLang(getSettings(res))}
+        setSelectedOption={(res) => setFromLang(getSettings(res))}
       />
       <InputField placeholder="Input Data" setValue={setValue} />
       <LanguageDropdown
         label="To Format"
         currSelection={toLang.language}
-        setOption={(res) => setToLang(getSettings(res))}
+        setSelectedOption={(res) => setToLang(getSettings(res))}
       />
       <Typography>To Format</Typography>
-      <CopyFormat
-        fromLang={fromLang}
-        value={value}
-        setNotification={setNotification}
-      />
-      <CodeEditor languageSetting={toLang} value={targetValue} />
+      <CopyFormat fromLang={fromLang} value={value} notificationAPI={api} />
+      <Suspense fallback={<div>Loading....</div>}>
+        <CodeEditorComponent languageSetting={toLang} irValue={ir} />
+      </Suspense>
     </>
   );
 };

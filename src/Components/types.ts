@@ -7,5 +7,3 @@ export enum SupportedLanguage {
 export type ErrorMsg = string;
 export type Data = Array<Record<string, any>>;
 export type Result = [Data, ErrorMsg];
-
-export type NotificationType = "success" | "info" | "warning" | "error";

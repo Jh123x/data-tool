@@ -1,30 +1,35 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import type { Settings } from "../Logic/types";
+import { Data } from "./types";
 
 interface EditorProp {
-  value?: string;
+  irValue: Data;
   languageSetting: Settings;
 }
 
-export const CodeEditor = ({ value, languageSetting }: EditorProp) => {
+export const CodeEditor = ({ irValue, languageSetting }: EditorProp) => {
   const [results, setResult] = useState<string>("");
 
   useEffect(() => {
-    setResult(languageSetting.Prettify(value ?? ""));
-  }, [value, languageSetting]);
+    const value = languageSetting.toType(irValue);
+    setResult(languageSetting.Prettify(value));
+  }, [irValue, languageSetting]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <SyntaxHighlighter
-        language={languageSetting.language}
-        showInlineLineNumbers={true}
-        wrapLongLines={true}
-        showLineNumbers={true}
-        startingLineNumber={1}
-      >
-        {results}
-      </SyntaxHighlighter>
-    </Suspense>
+    <SyntaxHighlighter
+      language={languageSetting.language}
+      showInlineLineNumbers={true}
+      wrapLongLines={true}
+      showLineNumbers={true}
+      startingLineNumber={1}
+      customStyle={{
+        maxHeight: "50%",
+      }}
+    >
+      {results}
+    </SyntaxHighlighter>
   );
 };
+
+export default CodeEditor;

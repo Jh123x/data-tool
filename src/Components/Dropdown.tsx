@@ -1,28 +1,35 @@
 import { Dropdown, Button, Typography, Layout } from "antd";
+import type { ItemType, MenuItemType } from "antd/es/menu/interface";
+import { useEffect, useState } from "react";
 import { ALL_DATA } from "../Logic/resolver";
 
 interface DropdownProps {
   label: string;
   currSelection: string;
-  setOption: (selected: string) => void;
+  setSelectedOption: (selected: string) => void;
 }
 
 export const LanguageDropdown = ({
   currSelection,
-  setOption,
+  setSelectedOption,
 }: DropdownProps) => {
-  const ALL_OPTIONS = ALL_DATA.map((v) => ({
-    key: v.language,
-    label: (
-      <Typography
-        onClick={() => {
-          setOption(v.language);
-        }}
-      >
-        {v.language}
-      </Typography>
-    ),
-  }));
+  const [options, setOptions] = useState<ItemType<MenuItemType>[]>([]);
+
+  useEffect(() => {
+    const res = ALL_DATA.map(
+      (v) => ({
+        key: v.language,
+        label: (
+          <Typography onClick={() => setSelectedOption(v.language)}>
+            {v.language}
+          </Typography>
+        ),
+      }),
+      [setSelectedOption],
+    );
+
+    setOptions(res);
+  }, [setSelectedOption]);
 
   return (
     <Layout
@@ -31,7 +38,7 @@ export const LanguageDropdown = ({
         gap: "10px",
       }}
     >
-      <Dropdown menu={{ items: ALL_OPTIONS }}>
+      <Dropdown menu={{ items: options }}>
         <Button>{currSelection ?? "Choose an option"}</Button>
       </Dropdown>
     </Layout>

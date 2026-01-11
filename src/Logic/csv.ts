@@ -26,22 +26,22 @@ export const CsvType: Settings = {
   },
   toType: (data: Data): string => {
     if (data.length === 0) return "";
+
     const headers = [];
-    for (const obj of data) {
-      for (const k of Object.keys(obj)) {
-        if (k in headers) continue;
-        headers.push(k);
-      }
+    for (const k of Object.keys(data[0])) {
+      if (k in headers) continue;
+      headers.push(k);
     }
 
+    console.log(headers);
+
     const results = [headers];
+
     for (const obj of data) {
-      const row = [];
-      for (const k of headers) {
-        row.push(obj[k] ?? "");
-      }
+      const row = headers.map((headerVal: string) => obj[headerVal]);
       results.push(row);
     }
+
     return stringify(results);
   },
 };

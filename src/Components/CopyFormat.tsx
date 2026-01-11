@@ -2,18 +2,18 @@ import type { Settings } from "../Logic/types";
 import { ALL_DATA } from "../Logic/resolver";
 import { Button, Card, Col, Row, Typography } from "antd";
 import { useEffect, useState } from "react";
-import type { NotificationProps } from "./Copy";
+import { NotificationInstance } from "antd/es/notification/interface";
 
 interface CopyFormatProps {
   fromLang: Settings;
   value: string;
-  setNotification: (_: NotificationProps) => void;
+  notificationAPI: NotificationInstance;
 }
 
 export const CopyFormat = ({
   fromLang,
   value,
-  setNotification,
+  notificationAPI,
 }: CopyFormatProps) => {
   const [currIR, setCurrIR] = useState<Array<Record<string, any>>>([]);
 
@@ -21,8 +21,7 @@ export const CopyFormat = ({
     if (value === "") return setCurrIR([]);
     const [result, errMsg] = fromLang.fromType(value);
     if ((errMsg ?? "") !== "") {
-      setNotification({
-        type: "error",
+      notificationAPI.error({
         title: "Error format",
         message: errMsg,
       });
@@ -30,7 +29,7 @@ export const CopyFormat = ({
       return;
     }
     setCurrIR(result);
-  }, [fromLang, value, setNotification]);
+  }, [fromLang, value, notificationAPI]);
 
   return (
     <>
@@ -54,15 +53,13 @@ export const CopyFormat = ({
                 <Button
                   onClick={() => {
                     if (currIR.length === 0)
-                      return setNotification({
-                        type: "info",
+                      return notificationAPI.info({
                         title: "Empty Value",
                         message: "Input some data to get started",
                       });
                     const result = currType.toType(currIR);
                     navigator.clipboard.writeText(result);
-                    setNotification({
-                      type: "success",
+                    notificationAPI.success({
                       title: `Copied data as ${currLanguangeName}`,
                     });
                   }}
