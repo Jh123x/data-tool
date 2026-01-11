@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { CodeEditor } from "./Components/CodeEditor";
-import { CopyButton } from "./Components/CopyButton";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { JsonType } from "./Logic/json";
@@ -24,20 +23,19 @@ const App = () => {
       setTargetValue("");
       return;
     }
-    try {
-      const [tmp, errMsg] = fromLang.fromType(value);
-      if (errMsg !== "") {
-        setNotification("error", errMsg);
-        return;
-      }
-      const finalValue = toLang.toType(tmp);
-      setTargetValue(finalValue);
-    } catch (error) {
-      const errMsg = String(error);
-      setTargetValue(errMsg);
-      setNotification("error", errMsg);
+
+    const [tmp, errMsg] = fromLang.fromType(value);
+    if ((errMsg ?? "") !== "") {
+      setNotification({
+        type: "error",
+        title: "Error Format",
+        message: errMsg,
+      });
+      return;
     }
-  }, [value, fromLang, toLang]);
+    const finalValue = toLang.toType(tmp);
+    setTargetValue(finalValue);
+  }, [value, fromLang, toLang, setNotification]);
   return (
     <>
       {contextHolder}
@@ -58,7 +56,11 @@ const App = () => {
         setOption={(res) => setToLang(getSettings(res))}
       />
       <Typography>To Format</Typography>
-      <CopyFormat fromLang={fromLang} value={value} />
+      <CopyFormat
+        fromLang={fromLang}
+        value={value}
+        setNotification={setNotification}
+      />
       <CodeEditor languageSetting={toLang} value={targetValue} />
     </>
   );

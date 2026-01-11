@@ -11,7 +11,15 @@ export const JsonType: Settings = {
     }
   },
   fromType: (code: string): Result => {
-    return JSON.parse(code);
+    if (code.length > 0 && code[0] !== "[") {
+      return [[], "Only JSON arrays are supported"];
+    }
+
+    try {
+      return [JSON.parse(code), ""];
+    } catch (error) {
+      return [[], String(error)];
+    }
   },
   toType: (data: Data): string => {
     return JSON.stringify(data);
