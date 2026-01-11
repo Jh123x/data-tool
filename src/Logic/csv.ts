@@ -1,4 +1,5 @@
-import { type Data, SupportedLanguage, type Result } from "../Components/types";
+import type { Data, Result } from "../Components/types";
+import { SupportedLanguage } from "../Components/types";
 import type { Settings } from "./types";
 import { parse, stringify } from "@vanillaes/csv";
 

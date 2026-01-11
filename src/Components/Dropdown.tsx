@@ -1,6 +1,4 @@
-import { Dropdown, Button } from "antd";
-import Layout from "antd/es/layout/layout";
-import Typography from "antd/es/typography/Typography";
+import { Dropdown, Button, Typography, Layout } from "antd";
 import { ALL_DATA } from "../Logic/resolver";
 
 interface DropdownProps {
