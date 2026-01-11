@@ -1,4 +1,4 @@
-import { Data, SupportedLanguage } from "../Components/types";
+import { Data, Result, SupportedLanguage } from "../Components/types";
 import type { Settings } from "./types";
 
 export const JsonType: Settings = {
@@ -10,7 +10,7 @@ export const JsonType: Settings = {
       return code;
     }
   },
-  fromType: (code: string): Data => {
+  fromType: (code: string): Result => {
     return JSON.parse(code);
   },
   toType: (data: Data): string => {

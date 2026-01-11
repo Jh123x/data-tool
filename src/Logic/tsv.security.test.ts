@@ -10,9 +10,9 @@ describe("TSV Security Tests", () => {
   test("prototype pollution attempt via header should not modify global prototypes", () => {
     const header = "__proto__\tfoo\n";
     const row = "pwned\tbar\n";
-    const tsv = header + row;
+    const input = header + row;
 
-    const parsed = TsvType.fromType(tsv);
+    const [parsed, errMsg] = TsvType.fromType(input);
     expect(Array.isArray(parsed)).toBe(true);
 
     if (parsed.length > 0) {
@@ -38,8 +38,8 @@ describe("TSV Security Tests", () => {
   });
 
   test("extra fields are stored under numeric keys for TSV", () => {
-    const tsv = "a\tb\n1\t2\t3\n";
-    const parsed = TsvType.fromType(tsv);
+    const input = "a\tb\n1\t2\t3\n";
+    const [parsed, errMsg] = TsvType.fromType(input);
     expect(parsed.length).toBe(1);
     const row = parsed[0];
     expect(row["a"]).toBe("1");

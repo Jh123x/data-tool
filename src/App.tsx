@@ -8,13 +8,16 @@ import { getSettings } from "./Logic/resolver";
 import { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
 import { CopyFormat } from "./Components/CopyFormat";
-import { Typography } from "antd";
+import { notification, Typography } from "antd";
+import { setIsCopiedFactory } from "./Components/Copy";
 
 const App = () => {
+  const [api, contextHolder] = notification.useNotification();
   const [value, setValue] = useState<string>("");
   const [fromLang, setFromLang] = useState<Settings>(JsonType);
   const [toLang, setToLang] = useState<Settings>(JsonType);
   const [targetValue, setTargetValue] = useState<string>("");
+  const setNotification = setIsCopiedFactory(api);
 
   useEffect(() => {
     if (value === "") {
@@ -22,15 +25,22 @@ const App = () => {
       return;
     }
     try {
-      const tmp = fromLang.fromType(value);
+      const [tmp, errMsg] = fromLang.fromType(value);
+      if (errMsg !== "") {
+        setNotification("error", errMsg);
+        return;
+      }
       const finalValue = toLang.toType(tmp);
       setTargetValue(finalValue);
     } catch (error) {
-      setTargetValue(String(error));
+      const errMsg = String(error);
+      setTargetValue(errMsg);
+      setNotification("error", errMsg);
     }
   }, [value, fromLang, toLang]);
   return (
     <>
+      {contextHolder}
       <PageTitle
         title="Data Converter"
         subText="Convert data between different formats."

@@ -9,15 +9,19 @@ interface EditorProp {
 
 export const CodeEditor = ({ value, languageSetting }: EditorProp) => {
   const [results, setResult] = useState<string>("");
+
   useEffect(() => {
     setResult(languageSetting.Prettify(value ?? ""));
   }, [value, languageSetting]);
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <SyntaxHighlighter
         language={languageSetting.language}
         showInlineLineNumbers={true}
         wrapLongLines={true}
+        showLineNumbers={true}
+        startingLineNumber={1}
       >
         {results}
       </SyntaxHighlighter>

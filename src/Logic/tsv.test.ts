@@ -3,7 +3,7 @@ import { TsvType } from "./tsv";
 describe("TsvType - edge cases", () => {
   test("parses and stringifies simple TSV (success case)", () => {
     const input = "name\tage\nAlice\t30\nBob\t25";
-    const data = TsvType.fromType(input);
+    const [data, errMsg] = TsvType.fromType(input);
 
     expect(data).toEqual([
       { name: "Alice", age: "30" },
@@ -17,7 +17,7 @@ describe("TsvType - edge cases", () => {
 
   test("empty input returns empty array and toType of empty data returns empty string", () => {
     const empty = "";
-    const parsed = TsvType.fromType(empty);
+    const [parsed, errMsg] = TsvType.fromType(empty);
     expect(parsed).toEqual([]);
 
     expect(TsvType.toType([])).toBe("");
@@ -25,7 +25,7 @@ describe("TsvType - edge cases", () => {
 
   test("header only (no rows) returns empty array", () => {
     const input = "col1\tcol2";
-    const parsed = TsvType.fromType(input);
+    const [parsed, errMsg] = TsvType.fromType(input);
     expect(parsed).toEqual([]);
   });
 
@@ -39,7 +39,7 @@ describe("TsvType - edge cases", () => {
   test("behaviour with invalid format: unterminated quoted field containing tabs", () => {
     // Header has two columns, but the data row begins a quoted field containing tabs and never closes the quote
     const input = 'col1\tcol2\n"a\tb\tc';
-    const parsed = TsvType.fromType(input);
+    const [parsed, errMsg] = TsvType.fromType(input);
 
     // The parser is tolerant and treats tabs inside quotes as data; the second header column becomes empty
     expect(parsed).toEqual([{ col1: "a\tb\tc", col2: "" }]);
@@ -63,7 +63,7 @@ describe("TsvType - edge cases", () => {
     // c's internal quote should be doubled in the output
     expect(tsv.includes('"" inside')).toBe(true);
 
-    const parsed = TsvType.fromType(tsv);
+    const [parsed, errMsg] = TsvType.fromType(tsv);
     expect(parsed.length).toBe(1);
     expect(parsed[0].a).toBe(original[0].a);
     expect(parsed[0].b).toBe(original[0].b);
@@ -74,14 +74,14 @@ describe("TsvType - edge cases", () => {
   test("handles CRLF line endings (\\r\\n) correctly", () => {
     const input = "h1\th2\r\nv1\tv2\r\n";
     // fromType should handle CRLF as line breaks
-    const parsed = TsvType.fromType(input);
+    const [parsed, errMsg] = TsvType.fromType(input);
     expect(parsed).toEqual([{ h1: "v1", h2: "v2" }]);
   });
 
   test("handles trailing empty fields and multiple consecutive tabs", () => {
     // header has 4 columns; row provides values and empty fields in between and at end
     const input = "a\tb\tc\td\n1\t\t3\t\n";
-    const parsed = TsvType.fromType(input);
+    const [parsed, errMsg] = TsvType.fromType(input);
     // b is empty string, d is empty string (trailing empty field preserved)
     expect(parsed).toEqual([{ a: "1", b: "", c: "3", d: "" }]);
   });
@@ -92,7 +92,7 @@ describe("TsvType - edge cases", () => {
 
     // Both null and undefined should produce empty columns
     expect(tsv).toContain("\t\t");
-    const parsed = TsvType.fromType(tsv);
+    const [parsed, errMsg] = TsvType.fromType(tsv);
     expect(parsed).toEqual([{ x: "", y: "", z: "ok" }]);
   });
 
@@ -110,7 +110,7 @@ describe("TsvType - edge cases", () => {
     const big = "a".repeat(5000) + '\nline\nwith\ttabs"and"quotes';
     const data = [{ big }];
     const tsv = TsvType.toType(data);
-    const parsed = TsvType.fromType(tsv);
+    const [parsed, errMsg] = TsvType.fromType(tsv);
     expect(parsed[0].big).toBe(big);
   });
 

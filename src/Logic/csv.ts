@@ -1,4 +1,4 @@
-import { type Data, SupportedLanguage } from "../Components/types";
+import { type Data, SupportedLanguage, type Result } from "../Components/types";
 import type { Settings } from "./types";
 import { parse, stringify } from "@vanillaes/csv";
 
@@ -7,9 +7,9 @@ export const CsvType: Settings = {
   Prettify: (code: string): string => {
     return code;
   },
-  fromType: (code: string): Data => {
+  fromType: (code: string): Result => {
     const result = parse(code);
-    if (result.length === 0) return [];
+    if (result.length === 0) return [[], ""];
     const header = result[0];
     const finalResult: Data = [];
 
@@ -21,7 +21,7 @@ export const CsvType: Settings = {
       }
       finalResult.push(obj);
     }
-    return finalResult;
+    return [finalResult, ""];
   },
   toType: (data: Data): string => {
     if (data.length === 0) return "";

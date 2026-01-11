@@ -1,4 +1,4 @@
-import { type Data, SupportedLanguage } from "../Components/types";
+import { type Data, SupportedLanguage, Result } from "../Components/types";
 import type { Settings } from "./types";
 
 // Security and robustness constants
@@ -134,13 +134,13 @@ export const TsvType: Settings = {
     }
   },
 
-  fromType: (code: unknown): Data => {
+  fromType: (code: unknown): Result => {
     // Validate input first so invalid types cause a clear exception (instead of being swallowed)
     const input = ensureStringInput(code, "code");
     // parseTSV expects a string-like input; provide validated input to avoid internal swallowing
     const result = parseTSV(input);
 
-    if (!Array.isArray(result) || result.length === 0) return [];
+    if (!Array.isArray(result) || result.length === 0) return [[], ""];
 
     const headerRaw = result[0] ?? [];
     const header: string[] = headerRaw.map((h) => {
@@ -165,7 +165,7 @@ export const TsvType: Settings = {
       }
       finalResult.push(obj);
     }
-    return finalResult;
+    return [finalResult, ""];
   },
 
   toType: (data: Data): string => {
