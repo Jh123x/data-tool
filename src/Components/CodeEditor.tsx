@@ -5,20 +5,26 @@ import { Data } from "./types";
 
 interface EditorProp {
   irValue: Data;
-  languageSetting: Settings;
+  toLang: Settings;
+  value: string
+  fromLang: Settings;
 }
 
-export const CodeEditor = ({ irValue, languageSetting }: EditorProp) => {
+export const CodeEditor = ({ irValue, toLang, value, fromLang }: EditorProp) => {
   const [results, setResult] = useState<string>("");
 
   useEffect(() => {
-    const value = languageSetting.toType(irValue);
-    setResult(languageSetting.Prettify(value));
-  }, [irValue, languageSetting]);
+    if (fromLang === toLang) {
+      setResult(toLang.Prettify(value));
+      return
+    }
+    const resultValue = toLang.toType(irValue);
+    setResult(toLang.Prettify(resultValue));
+  }, [irValue, toLang, fromLang, value]);
 
   return (
     <SyntaxHighlighter
-      language={languageSetting.language}
+      language={toLang.language}
       showInlineLineNumbers={true}
       wrapLongLines={true}
       showLineNumbers={true}

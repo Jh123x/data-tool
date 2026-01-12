@@ -12,7 +12,8 @@ export const JsonType: Settings = {
     }
   },
   fromType: (code: string): Result => {
-    if (code.length > 0 && code[0] !== "[") {
+    if (code.length === 0) return [[], ""]
+    if (code[0] !== "[") {
       return [[], "Only JSON arrays are supported"];
     }
 

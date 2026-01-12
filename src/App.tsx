@@ -17,6 +17,7 @@ const App = () => {
   const [ir, setIR] = useState<Data>([]);
 
   useEffect(() => {
+    if (value.length === 0) return;
     const [tmp, errMsg] = fromLang.fromType(value);
 
     if ((errMsg ?? "") !== "") {
@@ -57,7 +58,7 @@ const App = () => {
       <Typography>To Format</Typography>
       <CopyFormat fromLang={fromLang} value={value} notificationAPI={api} />
       <Suspense fallback={<div>Loading....</div>}>
-        <CodeEditorComponent languageSetting={toLang} irValue={ir} />
+        <CodeEditorComponent fromLang={fromLang} value={value} toLang={toLang} irValue={ir} />
       </Suspense>
     </>
   );
