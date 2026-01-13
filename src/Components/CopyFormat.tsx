@@ -3,6 +3,7 @@ import { ALL_DATA } from "../Logic/resolver";
 import { Button, Card, Col, Row, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { NotificationInstance } from "antd/es/notification/interface";
+import DownloadAsFile from "../Logic/download";
 
 interface CopyFormatProps {
   fromLang: Settings;
@@ -23,7 +24,7 @@ export const CopyFormat = ({
     if ((errMsg ?? "") !== "") {
       notificationAPI.error({
         title: "Error format",
-        message: errMsg,
+        description: errMsg,
       });
       setCurrIR([]);
       return;
@@ -55,7 +56,7 @@ export const CopyFormat = ({
                     if (currIR.length === 0)
                       return notificationAPI.info({
                         title: "Empty Value",
-                        message: "Input some data to get started",
+                        description: "Input some data to get started",
                       });
                     const result = currType.toType(currIR);
                     navigator.clipboard.writeText(result);
@@ -64,7 +65,22 @@ export const CopyFormat = ({
                     });
                   }}
                 >
-                  Copy {currType.language.toUpperCase()}
+                  Copy {currLanguangeName}
+                </Button>
+                <Button
+                  onClick={() => {
+                    const currResult = currType.toType(currIR)
+                    if (currResult.length === 0 || value.length === 0) {
+                      notificationAPI.info({
+                        title: "Empty Value",
+                        description: "Input some data to get started",
+                      })
+                      return
+                    }
+                    DownloadAsFile(currLanguangeName.toLowerCase(), "output", currResult)
+                  }}
+                >
+                  Download {currLanguangeName}
                 </Button>
               </Card>
             </Col>
