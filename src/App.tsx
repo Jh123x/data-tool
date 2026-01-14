@@ -6,8 +6,9 @@ import { getSettings } from "./Logic/resolver";
 import { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
 import { CopyFormat } from "./Components/CopyFormat";
-import { notification, Typography } from "antd";
+import { Button, notification, Row, Typography } from "antd";
 import type { Data } from "./Components/types";
+import { detectFormat } from "./Logic/auto_detect_format";
 
 const App = () => {
   const [api, contextHolder] = notification.useNotification();
@@ -15,6 +16,13 @@ const App = () => {
   const [fromLang, setFromLang] = useState<Settings>(JsonType);
   const [toLang, setToLang] = useState<Settings>(JsonType);
   const [ir, setIR] = useState<Data>([]);
+  const [isAutoDetect, setAutoDetect] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!isAutoDetect) return;
+    const detectedSettings = detectFormat(value);
+    setFromLang(detectedSettings);
+  }, [isAutoDetect, value])
 
   useEffect(() => {
     if (value.length === 0) return;
@@ -44,11 +52,21 @@ const App = () => {
         subText="Convert data between different formats."
       />
       <Typography>To Format</Typography>
-      <LanguageDropdown
-        label="From Format"
-        currSelection={fromLang.language}
-        setSelectedOption={(res) => setFromLang(getSettings(res))}
-      />
+      <Row>
+        <LanguageDropdown
+          label="From Format"
+          currSelection={fromLang.language}
+          disabled={isAutoDetect}
+          setSelectedOption={(res) => setFromLang(getSettings(res))}
+        />
+        <Button
+          onClick={() => {
+            setAutoDetect(!isAutoDetect)
+          }}
+        >
+          Toggle Autodetect
+        </Button>
+      </Row>
       <InputField placeholder="Input Data" setValue={setValue} />
       <LanguageDropdown
         label="To Format"

@@ -6,12 +6,14 @@ import { ALL_DATA } from "../Logic/resolver";
 interface DropdownProps {
   label: string;
   currSelection: string;
+  disabled?: boolean;
   setSelectedOption: (selected: string) => void;
 }
 
 export const LanguageDropdown = ({
   currSelection,
   setSelectedOption,
+  disabled,
 }: DropdownProps) => {
   const [options, setOptions] = useState<ItemType<MenuItemType>[]>([]);
 
@@ -38,7 +40,7 @@ export const LanguageDropdown = ({
         gap: "10px",
       }}
     >
-      <Dropdown menu={{ items: options }}>
+      <Dropdown menu={{ items: options }} disabled={disabled ?? false}>
         <Button>{currSelection ?? "Choose an option"}</Button>
       </Dropdown>
     </Layout>
