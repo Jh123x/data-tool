@@ -9,20 +9,24 @@ export const CsvType: Settings = {
     return code;
   },
   fromType: (code: string): Result => {
-    const result = parse(code);
-    if (result.length === 0) return [[], ""];
-    const header = result[0];
-    const finalResult: Data = [];
+    try {
+      const result = parse(code);
+      if (result.length === 0) return [[], ""];
+      const header = result[0];
+      const finalResult: Data = [];
 
-    for (let rowIdx = 1; rowIdx < result.length; rowIdx++) {
-      const row = result[rowIdx];
-      let obj: Record<string, Array<string>> = {};
-      for (let i = 0; i < header.length; i++) {
-        obj[header[i]] = row[i];
+      for (let rowIdx = 1; rowIdx < result.length; rowIdx++) {
+        const row = result[rowIdx];
+        let obj: Record<string, Array<string>> = {};
+        for (let i = 0; i < header.length; i++) {
+          obj[header[i]] = row[i];
+        }
+        finalResult.push(obj);
       }
-      finalResult.push(obj);
+      return [finalResult, ""];
+    } catch (e) {
+      return [[], String(e)]
     }
-    return [finalResult, ""];
   },
   toType: (data: Data): string => {
     if (data.length === 0) return "";
