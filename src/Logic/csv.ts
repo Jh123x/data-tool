@@ -37,8 +37,6 @@ export const CsvType: Settings = {
       headers.push(k);
     }
 
-    console.log(headers);
-
     const results = [headers];
 
     for (const obj of data) {

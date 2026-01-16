@@ -1,0 +1,115 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CopyFormat > should match snapshot 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="ant-row css-dev-only-do-not-override-iecf5o css-var-root"
+      style="padding: 10px;"
+    >
+      <div
+        class="ant-col ant-col-8 css-dev-only-do-not-override-iecf5o css-var-root"
+        style="padding: 5px;"
+      >
+        <div
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-iecf5o css-var-root"
+        >
+          <div
+            class="ant-card-body"
+          >
+            <article
+              class="ant-typography css-dev-only-do-not-override-iecf5o css-var-root"
+            >
+              JSON
+            </article>
+            <button
+              class="ant-btn css-dev-only-do-not-override-iecf5o css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Copy JSON
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-iecf5o css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Download JSON
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-col ant-col-8 css-dev-only-do-not-override-iecf5o css-var-root"
+        style="padding: 5px;"
+      >
+        <div
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-iecf5o css-var-root"
+        >
+          <div
+            class="ant-card-body"
+          >
+            <article
+              class="ant-typography css-dev-only-do-not-override-iecf5o css-var-root"
+            >
+              CSV
+            </article>
+            <button
+              class="ant-btn css-dev-only-do-not-override-iecf5o css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Copy CSV
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-iecf5o css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Download CSV
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-col ant-col-8 css-dev-only-do-not-override-iecf5o css-var-root"
+        style="padding: 5px;"
+      >
+        <div
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-iecf5o css-var-root"
+        >
+          <div
+            class="ant-card-body"
+          >
+            <article
+              class="ant-typography css-dev-only-do-not-override-iecf5o css-var-root"
+            >
+              TSV
+            </article>
+            <button
+              class="ant-btn css-dev-only-do-not-override-iecf5o css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Copy TSV
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-iecf5o css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Download TSV
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

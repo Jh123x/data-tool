@@ -1,5 +1,3 @@
-
-
 export default function DownloadAsFile(fileType: string, fileName: string, fileContents: string) {
   if (fileContents.length === 0) return
   const blob = new Blob([fileContents], { type: fileType });
@@ -12,3 +10,4 @@ export default function DownloadAsFile(fileType: string, fileName: string, fileC
   a.remove()
   window.URL.revokeObjectURL(url);
 }
+

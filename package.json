@@ -5,18 +5,18 @@
   "type": "module",
   "dependencies": {
     "@vanillaes/csv": "^3.0.4",
+    "@vitejs/plugin-react": "^5.1.2",
     "antd": "^6.1.4",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-syntax-highlighter": "^16.1.0",
-    "@vitejs/plugin-react": "^5.1.2",
     "vite": "^7.3.1"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^13.5.0",
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@types/react-syntax-highlighter": "^15.5.13",
     "jsdom": "^27.4.0",

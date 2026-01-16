@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Loading > should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-skeleton ant-skeleton-element ant-skeleton-active ant-skeleton-block css-dev-only-do-not-override-iecf5o css-var-root"
+  >
+    <span
+      class="ant-skeleton-input ant-skeleton-input-lg"
+      style="height: 40vh;"
+    />
+  </div>
+</DocumentFragment>
+`;
