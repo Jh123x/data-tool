@@ -8,6 +8,7 @@ export const Loading = () => {
     style={{
       height: '40vh'
     }}
+    active={true}
   />
 }
 
