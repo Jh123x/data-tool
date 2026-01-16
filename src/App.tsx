@@ -9,6 +9,7 @@ import { CopyFormat } from "./Components/CopyFormat";
 import { Button, notification, Row, Typography } from "antd";
 import type { Data } from "./Components/types";
 import { detectFormat } from "./Logic/auto_detect_format";
+import { Loading } from "./Components/Loading";
 
 const App = () => {
   const [api, contextHolder] = notification.useNotification();
@@ -75,7 +76,7 @@ const App = () => {
       />
       <Typography>To Format</Typography>
       <CopyFormat fromLang={fromLang} value={value} notificationAPI={api} />
-      <Suspense fallback={<div>Loading....</div>}>
+      <Suspense fallback={<Loading />}>
         <CodeEditorComponent fromLang={fromLang} value={value} toLang={toLang} irValue={ir} notificationAPI={api} />
       </Suspense>
     </>
