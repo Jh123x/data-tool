@@ -17,6 +17,7 @@ export const CodeEditor = ({ irValue, toLang, value, fromLang, notificationAPI }
   const [results, setResult] = useState<string>("");
 
   useEffect(() => {
+    console.log(results, results.length)
     if (fromLang === toLang) {
       setResult(toLang.Prettify(value));
       return
@@ -40,7 +41,9 @@ export const CodeEditor = ({ irValue, toLang, value, fromLang, notificationAPI }
         position: "absolute",
         top: "10px",
         right: "10px",
+        display: results.length === 0 ? 'none' : 'block',
       }}
+        hidden={results.length == 0}
         onClick={onCopy}
       >
         Copy
