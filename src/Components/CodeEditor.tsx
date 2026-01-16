@@ -27,7 +27,7 @@ export const CodeEditor = ({ irValue, toLang, value, fromLang, notificationAPI }
 
   const onCopy = () => {
     notificationAPI.success({
-      title: "Copied to clipboard",
+      title: `Copied as formatted ${toLang.language.toUpperCase()}`,
     });
     navigator.clipboard.writeText(results);
   }

@@ -55,13 +55,12 @@ export const CopyFormat = ({
                   onClick={() => {
                     if (currIR.length === 0)
                       return notificationAPI.info({
-                        title: "Empty Value",
-                        description: "Input some data to get started",
+                        title: "Input some data to get started",
                       });
                     const result = currType.toType(currIR);
                     navigator.clipboard.writeText(result);
                     notificationAPI.success({
-                      title: `Copied data as ${currLanguangeName}`,
+                      title: `Copied as ${currLanguangeName}`,
                     });
                   }}
                 >
@@ -72,8 +71,7 @@ export const CopyFormat = ({
                     const currResult = currType.toType(currIR)
                     if (currResult.length === 0 || value.length === 0) {
                       notificationAPI.info({
-                        title: "Empty Value",
-                        description: "Input some data to get started",
+                        title: "Input some data to get started",
                       })
                       return
                     }
