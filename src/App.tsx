@@ -76,7 +76,7 @@ const App = () => {
       <Typography>To Format</Typography>
       <CopyFormat fromLang={fromLang} value={value} notificationAPI={api} />
       <Suspense fallback={<div>Loading....</div>}>
-        <CodeEditorComponent fromLang={fromLang} value={value} toLang={toLang} irValue={ir} />
+        <CodeEditorComponent fromLang={fromLang} value={value} toLang={toLang} irValue={ir} notificationAPI={api} />
       </Suspense>
     </>
   );
