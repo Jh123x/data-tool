@@ -1,7 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
-import { JsonType } from "./Logic/json";
 import { getSettings } from "./Logic/resolver";
 import type { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
@@ -10,21 +9,37 @@ import { Button, notification, Row, Typography } from "antd";
 import type { Data } from "./Components/types";
 import { detectFormat } from "./Logic/auto_detect_format";
 import { Loading } from "./Components/Loading";
+import { GetSettings, SetSettings } from "./Logic/storage";
+import type { UserSettings } from "./Logic/user_settings";
 
 const App = () => {
+  const defaultSettings = GetSettings()
   const [api, contextHolder] = notification.useNotification();
-  const [value, setValue] = useState<string>("");
-  const [fromLang, setFromLang] = useState<Settings>(JsonType);
-  const [toLang, setToLang] = useState<Settings>(JsonType);
+  const [value, setValue] = useState<string>(defaultSettings.value);
+  const [fromLang, setFromLang] = useState<Settings>(getSettings(defaultSettings.fromLang));
+  const [toLang, setToLang] = useState<Settings>(getSettings(defaultSettings.toLang));
   const [ir, setIR] = useState<Data>([]);
-  const [isAutoDetect, setAutoDetect] = useState<boolean>(true);
+  const [isAutoDetect, setAutoDetect] = useState<boolean>(defaultSettings.isAutoDetect);
 
+  // Save the user settings.
+  useEffect(() => {
+    const userSettings: UserSettings = {
+      value: value,
+      isAutoDetect: isAutoDetect,
+      fromLang: fromLang.language,
+      toLang: toLang.language,
+    }
+    SetSettings(userSettings);
+  }, [fromLang, toLang, value, isAutoDetect])
+
+  // Format detection.
   useEffect(() => {
     if (!isAutoDetect) return;
     const detectedSettings = detectFormat(value);
     setFromLang(detectedSettings);
   }, [isAutoDetect, value])
 
+  // Update Intermediate Representation.
   useEffect(() => {
     if (value.length === 0) return;
     const [tmp, errMsg] = fromLang.fromType(value);
@@ -69,7 +84,7 @@ const App = () => {
           Toggle Autodetect
         </Button>
       </Row>
-      <InputField placeholder="Input Data" setValue={setValue} />
+      <InputField placeholder="Input Data" setValue={setValue} value={value} />
       <LanguageDropdown
         label="To Format"
         currSelection={toLang.language}

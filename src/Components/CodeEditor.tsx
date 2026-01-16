@@ -17,7 +17,6 @@ export const CodeEditor = ({ irValue, toLang, value, fromLang, notificationAPI }
   const [results, setResult] = useState<string>("");
 
   useEffect(() => {
-    console.log(results, results.length)
     if (fromLang === toLang) {
       setResult(toLang.Prettify(value));
       return
