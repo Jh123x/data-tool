@@ -3,7 +3,7 @@ import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { JsonType } from "./Logic/json";
 import { getSettings } from "./Logic/resolver";
-import { Settings } from "./Logic/types";
+import type { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
 import { CopyFormat } from "./Components/CopyFormat";
 import { Button, notification, Row, Typography } from "antd";
