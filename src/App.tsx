@@ -41,6 +41,7 @@ const App = () => {
     setIR(tmp);
   }, [fromLang, value, api]);
 
+  // Lazy loading for bulky container
   const CodeEditorComponent = React.lazy(
     () => import("./Components/CodeEditor"),
   );
