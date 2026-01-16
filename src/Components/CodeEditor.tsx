@@ -1,9 +1,9 @@
 import { Button } from "antd";
-import { NotificationInstance } from "antd/es/notification/interface";
+import type { NotificationInstance } from "antd/es/notification/interface";
 import React, { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import type { Settings } from "../Logic/types";
-import { Data } from "./types";
+import type { Data } from "./types";
 
 interface EditorProp {
   irValue: Data;
