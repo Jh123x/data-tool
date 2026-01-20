@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useCallback, useEffect, useState } from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { getSettings } from "./Logic/resolver";
@@ -11,6 +11,7 @@ import { detectFormat } from "./Logic/auto_detect_format";
 import { Loading } from "./Components/Loading";
 import { GetSettings, SetSettings } from "./Logic/storage";
 import type { UserSettings } from "./Logic/user_settings";
+import { debounce } from "lodash";
 
 const App = () => {
   const defaultSettings = GetSettings()
@@ -39,20 +40,23 @@ const App = () => {
     setFromLang(detectedSettings);
   }, [isAutoDetect, value])
 
+  // Create debounced update
+  const notifyUser = useCallback(debounce((errMsg) => {
+    api.error({
+      title: "Error Format",
+      description: errMsg,
+      duration: 2,
+    });
+  }, 200), [])
+
   // Update Intermediate Representation.
   useEffect(() => {
     if (value.length === 0) return;
     const [tmp, errMsg] = fromLang.fromType(value);
-
     if ((errMsg ?? "") !== "") {
-      api.error({
-        title: "Error Format",
-        description: errMsg,
-        duration: 2,
-      });
+      notifyUser(errMsg);
       return;
     }
-
     setIR(tmp);
   }, [fromLang, value, api]);
 
@@ -91,9 +95,9 @@ const App = () => {
         setSelectedOption={(res) => setToLang(getSettings(res))}
       />
       <Typography>To Format</Typography>
-      <CopyFormat fromLang={fromLang} value={value} notificationAPI={api} />
+      <CopyFormat notificationAPI={api} irValue={ir} />
       <Suspense fallback={<Loading />}>
-        <CodeEditorComponent fromLang={fromLang} value={value} toLang={toLang} irValue={ir} notificationAPI={api} />
+        <CodeEditorComponent toLang={toLang} irValue={ir} notificationAPI={api} />
       </Suspense>
     </>
   );

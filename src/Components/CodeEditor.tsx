@@ -8,22 +8,16 @@ import type { Data } from "./types";
 interface EditorProp {
   irValue: Data;
   toLang: Settings;
-  value: string
-  fromLang: Settings;
   notificationAPI: NotificationInstance;
 }
 
-export const CodeEditor = ({ irValue, toLang, value, fromLang, notificationAPI }: EditorProp) => {
+export const CodeEditor = ({ irValue, toLang, notificationAPI }: EditorProp) => {
   const [results, setResult] = useState<string>("");
 
   useEffect(() => {
-    if (fromLang === toLang) {
-      setResult(toLang.Prettify(value));
-      return
-    }
     const resultValue = toLang.toType(irValue);
     setResult(toLang.Prettify(resultValue));
-  }, [irValue, toLang, fromLang, value]);
+  }, [irValue, toLang]);
 
   const onCopy = () => {
     notificationAPI.success({

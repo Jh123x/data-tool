@@ -1,37 +1,19 @@
 import type { Settings } from "../Logic/types";
 import { ALL_DATA } from "../Logic/resolver";
 import { Button, Card, Col, Row, Typography } from "antd";
-import { useEffect, useState } from "react";
 import { NotificationInstance } from "antd/es/notification/interface";
 import DownloadAsFile from "../Logic/download";
+import { Data } from "./types";
 
 interface CopyFormatProps {
-  fromLang: Settings;
-  value: string;
   notificationAPI: NotificationInstance;
+  irValue: Data;
 }
 
 export const CopyFormat = ({
-  fromLang,
-  value,
   notificationAPI,
+  irValue,
 }: CopyFormatProps) => {
-  const [currIR, setCurrIR] = useState<Array<Record<string, any>>>([]);
-
-  useEffect(() => {
-    if (value === "") return setCurrIR([]);
-    const [result, errMsg] = fromLang.fromType(value);
-    if ((errMsg ?? "") !== "") {
-      notificationAPI.error({
-        title: "Error format",
-        description: errMsg,
-      });
-      setCurrIR([]);
-      return;
-    }
-    setCurrIR(result);
-  }, [fromLang, value, notificationAPI]);
-
   return (
     <>
       <Row
@@ -53,11 +35,11 @@ export const CopyFormat = ({
                 <Typography>{currLanguangeName}</Typography>
                 <Button
                   onClick={() => {
-                    if (currIR.length === 0)
+                    if (irValue.length === 0)
                       return notificationAPI.info({
                         title: "Input some data to get started",
                       });
-                    const result = currType.toType(currIR);
+                    const result = currType.toType(irValue);
                     navigator.clipboard.writeText(result);
                     notificationAPI.success({
                       title: `Copied as ${currLanguangeName}`,
@@ -68,8 +50,8 @@ export const CopyFormat = ({
                 </Button>
                 <Button
                   onClick={() => {
-                    const currResult = currType.toType(currIR)
-                    if (currResult.length === 0 || value.length === 0) {
+                    const currResult = currType.toType(irValue)
+                    if (currResult.length === 0) {
                       notificationAPI.info({
                         title: "Input some data to get started",
                       })
