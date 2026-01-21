@@ -55,6 +55,7 @@ const App = () => {
     const [tmp, errMsg] = fromLang.fromType(value);
     if ((errMsg ?? "") !== "") {
       notifyUser(errMsg);
+      setIR([]);
       return;
     }
     setIR(tmp);
