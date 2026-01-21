@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import type { Settings } from "../Logic/types";
 import type { Data } from "./types";

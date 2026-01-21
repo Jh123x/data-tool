@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useEffect, useState } from "react";
+import { Suspense, useCallback, useEffect, useState, lazy } from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { getSettings } from "./Logic/resolver";
@@ -55,14 +55,13 @@ const App = () => {
     const [tmp, errMsg] = fromLang.fromType(value);
     if ((errMsg ?? "") !== "") {
       notifyUser(errMsg);
-      setIR([]);
       return;
     }
     setIR(tmp);
   }, [fromLang, value, api]);
 
   // Lazy loading for bulky container
-  const CodeEditorComponent = React.lazy(
+  const CodeEditorComponent = lazy(
     () => import("./Components/CodeEditor"),
   );
 

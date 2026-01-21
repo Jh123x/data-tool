@@ -6,3 +6,5 @@ export interface Settings {
   fromType: (code: string) => Result;
   toType: (data: Data) => string;
 }
+
+export type ValueType = string | number | boolean;
