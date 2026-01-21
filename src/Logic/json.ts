@@ -19,8 +19,8 @@ export const JsonType: Settings = {
 
     try {
       const result = JSON.parse(code);
-      if (!(result instanceof Array)){
-        return [[],"Only JSON arrays are supported"]
+      if (!(result instanceof Array)) {
+        return [[], "Only JSON arrays are supported"]
       }
       return [result, ""];
     } catch (error) {
@@ -31,3 +31,4 @@ export const JsonType: Settings = {
     return JSON.stringify(data);
   },
 };
+
