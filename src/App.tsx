@@ -16,7 +16,7 @@ import { debounce } from "lodash";
 const App = () => {
   const defaultSettings = GetSettings()
   const [api, contextHolder] = notification.useNotification();
-  const [value, setValue] = useState<string>(defaultSettings.value);
+  const [value, setValue] = useState<string>("");
   const [fromLang, setFromLang] = useState<Settings>(getSettings(defaultSettings.fromLang));
   const [toLang, setToLang] = useState<Settings>(getSettings(defaultSettings.toLang));
   const [ir, setIR] = useState<Data>([]);
@@ -25,7 +25,6 @@ const App = () => {
   // Save the user settings.
   useEffect(() => {
     const userSettings: UserSettings = {
-      value: value,
       isAutoDetect: isAutoDetect,
       fromLang: fromLang.language,
       toLang: toLang.language,
