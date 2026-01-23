@@ -3,11 +3,11 @@
 exports[`Dropdown > should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ant-layout css-dev-only-do-not-override-iecf5o css-var-root"
+    class="ant-layout css-dev-only-do-not-override-3uaqrl css-var-root"
     style="row-gap: 10px; gap: 10px;"
   >
     <button
-      class="ant-btn css-dev-only-do-not-override-iecf5o css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
+      class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
       type="button"
     >
       <span>
