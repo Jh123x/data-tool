@@ -32,7 +32,7 @@ function parseCSV(input: string): string[][] {
     } else {
       if (ch === '"') {
         inQuotes = true;
-      } else if (ch === "\t") {
+      } else if (ch === ",") {
         row.push(field);
         field = "";
       } else if (ch === "\n") {
