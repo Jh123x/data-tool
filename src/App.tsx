@@ -1,4 +1,4 @@
-import React, { Suspense, useCallback, useEffect, useState } from "react";
+import { lazy, Suspense, useCallback, useEffect, useState } from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { getSettings } from "./Logic/resolver";
@@ -12,6 +12,7 @@ import { Loading } from "./Components/Loading";
 import { GetSettings, SetSettings } from "./Logic/storage";
 import type { UserSettings } from "./Logic/user_settings";
 import { debounce } from "lodash";
+import type { MessageData } from "./Worker/types";
 
 const App = () => {
   const defaultSettings = GetSettings();
@@ -59,20 +60,37 @@ const App = () => {
 
   // Update Intermediate Representation.
   useEffect(() => {
-    if (value.length === 0) return;
-    const [tmp, errMsg] = fromLang.fromType(value);
-    if ((errMsg ?? "") !== "") {
-      notifyUser(errMsg);
+    if (value.length === 0) {
       setIR([]);
       return;
     }
-    setIR(tmp);
+
+    const worker = new Worker(new URL("./Worker/parsing.ts", import.meta.url), {
+      type: "module",
+    });
+
+    worker.onmessage = (event: MessageEvent) => {
+      const [tmp, errMsg] = event.data;
+      if ((errMsg ?? "") === "") {
+        setIR(tmp);
+        return;
+      }
+      notifyUser(errMsg);
+      setIR([]);
+    };
+
+    worker.postMessage({
+      fromType: fromLang.language,
+      data: value,
+    } as MessageData);
+
+    return () => {
+      worker.terminate();
+    };
   }, [fromLang, value, api]);
 
   // Lazy loading for bulky container
-  const CodeEditorComponent = React.lazy(
-    () => import("./Components/CodeEditor"),
-  );
+  const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
 
   return (
     <>
@@ -104,8 +122,8 @@ const App = () => {
         setSelectedOption={(res) => setToLang(getSettings(res))}
       />
       <Typography>To Format</Typography>
-      <CopyFormat notificationAPI={api} irValue={ir} />
       <Suspense fallback={<Loading />}>
+        <CopyFormat notificationAPI={api} irValue={ir} />
         <CodeEditorComponent
           toLang={toLang}
           irValue={ir}

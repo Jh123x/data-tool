@@ -66,119 +66,39 @@ exports[`App > should render correctly 1`] = `
     To Format
   </article>
   <div
-    class="ant-row css-dev-only-do-not-override-3uaqrl css-var-root"
-    style="padding: 10px;"
+    class="ant-flex css-dev-only-do-not-override-3uaqrl css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
+    dir="column"
   >
     <div
-      class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
-      style="padding: 5px;"
+      aria-busy="true"
+      aria-live="polite"
+      class="ant-spin ant-spin-lg ant-spin-spinning css-dev-only-do-not-override-3uaqrl css-var-root"
     >
-      <div
-        class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
+      <span
+        aria-label="loading"
+        class="anticon anticon-loading anticon-spin ant-spin-dot"
+        role="img"
       >
-        <div
-          class="ant-card-body"
+        <svg
+          aria-hidden="true"
+          data-icon="loading"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 1024 1024"
+          width="1em"
         >
-          <article
-            class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
-          >
-            JSON
-          </article>
-          <button
-            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-            type="button"
-          >
-            <span>
-              Copy JSON
-            </span>
-          </button>
-          <button
-            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-            type="button"
-          >
-            <span>
-              Download JSON
-            </span>
-          </button>
-        </div>
-      </div>
+          <path
+            d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+          />
+        </svg>
+      </span>
     </div>
-    <div
-      class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
-      style="padding: 5px;"
+    <article
+      class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
     >
-      <div
-        class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
-      >
-        <div
-          class="ant-card-body"
-        >
-          <article
-            class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
-          >
-            CSV
-          </article>
-          <button
-            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-            type="button"
-          >
-            <span>
-              Copy CSV
-            </span>
-          </button>
-          <button
-            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-            type="button"
-          >
-            <span>
-              Download CSV
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div
-      class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
-      style="padding: 5px;"
-    >
-      <div
-        class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
-      >
-        <div
-          class="ant-card-body"
-        >
-          <article
-            class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
-          >
-            TSV
-          </article>
-          <button
-            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-            type="button"
-          >
-            <span>
-              Copy TSV
-            </span>
-          </button>
-          <button
-            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-            type="button"
-          >
-            <span>
-              Download TSV
-            </span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="ant-skeleton ant-skeleton-element ant-skeleton-active ant-skeleton-block css-dev-only-do-not-override-3uaqrl css-var-root"
-  >
-    <span
-      class="ant-skeleton-input ant-skeleton-input-lg"
-      style="height: 40vh;"
-    />
+      Loading...
+    </article>
   </div>
 </DocumentFragment>
 `;
