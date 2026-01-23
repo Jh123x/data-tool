@@ -1,11 +1,7 @@
 import type { Data, Result } from "../Components/types";
 import { SupportedLanguage } from "../Components/types";
 import type { Settings } from "./types";
-
-// Security and robustness constants
-const MAX_INPUT_LENGTH = 100_000; // adjustable limit to mitigate DoS
-const DANGEROUS_KEYS = new Set(["__proto__", "prototype", "constructor"]);
-const SPREADSHEET_DANGEROUS_START = /^[=+\-@]/;
+import { SPREADSHEET_DANGEROUS_START, DANGEROUS_KEYS } from "./consts";
 
 /**
  * Ensure the input is a string and within allowed size.
@@ -15,14 +11,13 @@ function ensureStringInput(input: unknown, name = "input"): string {
   if (input == null) throw new TypeError(`${name} must be a string`);
   if (typeof input !== "string")
     throw new TypeError(`${name} must be a string`);
-  if (input.length > MAX_INPUT_LENGTH) throw new Error(`${name} too large`);
   return input;
 }
 
 /**
  * Parse TSV text into array-of-rows (string[][]).
  */
-function parseTSV(rawInput: unknown): string[][] {
+function parseTSV(rawInput: string): string[][] {
   const input = ensureStringInput(rawInput, "TSV input");
   if (input.length === 0) return [];
 
@@ -85,7 +80,7 @@ function parseTSV(rawInput: unknown): string[][] {
  * Stringify rows (array-of-arrays) into TSV text.
  * Validates shape, sanitizes spreadsheet-dangerous leading characters, and escapes quotes.
  */
-function stringifyTSV(rows: unknown): string {
+function stringifyTSV(rows: string[][]): string {
   if (!Array.isArray(rows))
     throw new TypeError("stringifyTSV expects an array of rows");
   const outRows: string[] = [];
@@ -188,11 +183,11 @@ export const TsvType: Settings = {
       }
     }
 
-    const rows: any[][] = [headers];
+    const rows: string[][] = [headers];
     for (const obj of data) {
-      const row: any[] = [];
+      const row: string[] = [];
       for (const k of headers) {
-        let v: any;
+        let v: string;
         try {
           v = obj[k];
         } catch (e) {
