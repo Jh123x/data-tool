@@ -71,3 +71,5 @@ export const CopyFormat = ({ notificationAPI, irValue }: CopyFormatProps) => {
     </>
   );
 };
+
+export default CopyFormat;

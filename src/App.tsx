@@ -4,7 +4,6 @@ import { InputField } from "./Components/InputField";
 import { getSettings } from "./Logic/resolver";
 import type { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
-import { CopyFormat } from "./Components/CopyFormat";
 import { Button, notification, Row, Typography } from "antd";
 import type { Data } from "./Components/types";
 import { detectFormat } from "./Logic/auto_detect_format";
@@ -91,6 +90,7 @@ const App = () => {
 
   // Lazy loading for bulky container
   const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
+  const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
 
   return (
     <>
@@ -123,7 +123,7 @@ const App = () => {
       />
       <Typography>To Format</Typography>
       <Suspense fallback={<Loading />}>
-        <CopyFormat notificationAPI={api} irValue={ir} />
+        <CopyFormatComponent notificationAPI={api} irValue={ir} />
         <CodeEditorComponent
           toLang={toLang}
           irValue={ir}
