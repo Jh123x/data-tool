@@ -4,7 +4,6 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@vanillaes/csv": "^3.0.4",
     "@vitejs/plugin-react": "^5.1.2",
     "antd": "^6.1.4",
     "lodash": "^4.17.21",
