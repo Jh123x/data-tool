@@ -1,4 +1,5 @@
 import { TsvType } from "./tsv";
+import { describe, test, expect } from "vitest";
 
 describe("TsvType - edge cases", () => {
   test("parses and stringifies simple TSV (success case)", () => {
