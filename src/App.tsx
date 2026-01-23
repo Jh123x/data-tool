@@ -14,13 +14,19 @@ import type { UserSettings } from "./Logic/user_settings";
 import { debounce } from "lodash";
 
 const App = () => {
-  const defaultSettings = GetSettings()
+  const defaultSettings = GetSettings();
   const [api, contextHolder] = notification.useNotification();
   const [value, setValue] = useState<string>("");
-  const [fromLang, setFromLang] = useState<Settings>(getSettings(defaultSettings.fromLang));
-  const [toLang, setToLang] = useState<Settings>(getSettings(defaultSettings.toLang));
+  const [fromLang, setFromLang] = useState<Settings>(
+    getSettings(defaultSettings.fromLang),
+  );
+  const [toLang, setToLang] = useState<Settings>(
+    getSettings(defaultSettings.toLang),
+  );
   const [ir, setIR] = useState<Data>([]);
-  const [isAutoDetect, setAutoDetect] = useState<boolean>(defaultSettings.isAutoDetect);
+  const [isAutoDetect, setAutoDetect] = useState<boolean>(
+    defaultSettings.isAutoDetect,
+  );
 
   // Save the user settings.
   useEffect(() => {
@@ -28,25 +34,28 @@ const App = () => {
       isAutoDetect: isAutoDetect,
       fromLang: fromLang.language,
       toLang: toLang.language,
-    }
+    };
     SetSettings(userSettings);
-  }, [fromLang, toLang, value, isAutoDetect])
+  }, [fromLang, toLang, value, isAutoDetect]);
 
   // Format detection.
   useEffect(() => {
     if (!isAutoDetect) return;
     const detectedSettings = detectFormat(value);
     setFromLang(detectedSettings);
-  }, [isAutoDetect, value])
+  }, [isAutoDetect, value]);
 
   // Create debounced update
-  const notifyUser = useCallback(debounce((errMsg) => {
-    api.error({
-      title: "Error Format",
-      description: errMsg,
-      duration: 2,
-    });
-  }, 200), [])
+  const notifyUser = useCallback(
+    debounce((errMsg) => {
+      api.error({
+        title: "Error Format",
+        description: errMsg,
+        duration: 2,
+      });
+    }, 200),
+    [],
+  );
 
   // Update Intermediate Representation.
   useEffect(() => {
@@ -72,7 +81,7 @@ const App = () => {
         title="Data Converter"
         subText="Convert data between different formats."
       />
-      <Typography>To Format</Typography>
+      <Typography>From Format</Typography>
       <Row>
         <LanguageDropdown
           label="From Format"
@@ -82,7 +91,7 @@ const App = () => {
         />
         <Button
           onClick={() => {
-            setAutoDetect(!isAutoDetect)
+            setAutoDetect(!isAutoDetect);
           }}
         >
           Toggle Autodetect
@@ -97,7 +106,11 @@ const App = () => {
       <Typography>To Format</Typography>
       <CopyFormat notificationAPI={api} irValue={ir} />
       <Suspense fallback={<Loading />}>
-        <CodeEditorComponent toLang={toLang} irValue={ir} notificationAPI={api} />
+        <CodeEditorComponent
+          toLang={toLang}
+          irValue={ir}
+          notificationAPI={api}
+        />
       </Suspense>
     </>
   );
