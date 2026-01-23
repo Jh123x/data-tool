@@ -9,7 +9,7 @@ interface InputProps {
 }
 
 export const InputField = ({ placeholder, setValue, value }: InputProps) => {
-  const setFn = setValue ?? (() => { });
+  const setFn = setValue ?? (() => {});
   return (
     <TextArea
       rows={10}

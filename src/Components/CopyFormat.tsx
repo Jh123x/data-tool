@@ -10,10 +10,7 @@ interface CopyFormatProps {
   irValue: Data;
 }
 
-export const CopyFormat = ({
-  notificationAPI,
-  irValue,
-}: CopyFormatProps) => {
+export const CopyFormat = ({ notificationAPI, irValue }: CopyFormatProps) => {
   return (
     <>
       <Row
@@ -50,14 +47,18 @@ export const CopyFormat = ({
                 </Button>
                 <Button
                   onClick={() => {
-                    const currResult = currType.toType(irValue)
+                    const currResult = currType.toType(irValue);
                     if (currResult.length === 0) {
                       notificationAPI.info({
                         title: "Input some data to get started",
-                      })
-                      return
+                      });
+                      return;
                     }
-                    DownloadAsFile(currLanguangeName.toLowerCase(), "output", currResult)
+                    DownloadAsFile(
+                      currLanguangeName.toLowerCase(),
+                      "output",
+                      currResult,
+                    );
                   }}
                 >
                   Download {currLanguangeName}

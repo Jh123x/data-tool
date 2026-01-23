@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import type { Settings } from "../Logic/types";
 import type { Data } from "./types";
@@ -11,7 +11,11 @@ interface EditorProp {
   notificationAPI: NotificationInstance;
 }
 
-export const CodeEditor = ({ irValue, toLang, notificationAPI }: EditorProp) => {
+export const CodeEditor = ({
+  irValue,
+  toLang,
+  notificationAPI,
+}: EditorProp) => {
   const [results, setResult] = useState<string>("");
 
   useEffect(() => {
@@ -24,18 +28,21 @@ export const CodeEditor = ({ irValue, toLang, notificationAPI }: EditorProp) => 
       title: `Copied as formatted ${toLang.language.toUpperCase()}`,
     });
     navigator.clipboard.writeText(results);
-  }
+  };
 
   return (
-    <div style={{
-      position: "relative",
-    }}>
-      <Button style={{
-        position: "absolute",
-        top: "10px",
-        right: "10px",
-        display: results.length === 0 ? 'none' : 'block',
+    <div
+      style={{
+        position: "relative",
       }}
+    >
+      <Button
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "10px",
+          display: results.length === 0 ? "none" : "block",
+        }}
         hidden={results.length == 0}
         onClick={onCopy}
       >

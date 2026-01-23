@@ -1,18 +1,14 @@
-import { Skeleton } from 'antd';
+import { Skeleton } from "antd";
 
 export const Loading = () => {
-  return <Skeleton.Input
-    size='large'
-    block={true}
-    style={{
-      height: '40vh'
-    }}
-    active={true}
-  />
-}
-
-
-
-
-
-
+  return (
+    <Skeleton.Input
+      size="large"
+      block={true}
+      style={{
+        height: "40vh",
+      }}
+      active={true}
+    />
+  );
+};

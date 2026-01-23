@@ -12,15 +12,15 @@ export const JsonType: Settings = {
     }
   },
   fromType: (code: string): Result => {
-    if (code.length === 0) return [[], ""]
+    if (code.length === 0) return [[], ""];
     if (code[0] !== "[") {
       return [[], "Only JSON arrays are supported"];
     }
 
     try {
       const result = JSON.parse(code);
-      if (!(result instanceof Array)){
-        return [[],"Only JSON arrays are supported"]
+      if (!(result instanceof Array)) {
+        return [[], "Only JSON arrays are supported"];
       }
       return [result, ""];
     } catch (error) {

@@ -1,23 +1,21 @@
-import { vi, describe, test, expect } from "vitest";
+import { describe, test, expect } from "vitest";
 import { render } from "@testing-library/react";
 import { CopyFormat } from "./CopyFormat";
 import useNotification from "antd/es/notification/useNotification";
-import { JsonType } from "../Logic/json";
-
 
 const Wrapper = () => {
   const [api, contextHolder] = useNotification();
-  return <div>
-    {contextHolder}
-    <CopyFormat notificationAPI={api} value={"[]"} fromLang={JsonType} />
-  </div>
-}
+  return (
+    <div>
+      {contextHolder}
+      <CopyFormat notificationAPI={api} irValue={[]} />
+    </div>
+  );
+};
 
 describe("CopyFormat", () => {
   test("should match snapshot", () => {
     const { asFragment } = render(<Wrapper />);
     expect(asFragment()).toMatchSnapshot();
-  })
-})
-
-
+  });
+});
