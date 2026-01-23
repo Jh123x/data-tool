@@ -10,6 +10,7 @@ describe("TsvType - edge cases", () => {
       { name: "Alice", age: "30" },
       { name: "Bob", age: "25" },
     ]);
+    expect(errMsg).toBe("");
 
     const out = TsvType.toType(data);
     // toType should produce a TSV equivalent to the input (same header order)
@@ -20,6 +21,7 @@ describe("TsvType - edge cases", () => {
     const empty = "";
     const [parsed, errMsg] = TsvType.fromType(empty);
     expect(parsed).toEqual([]);
+    expect(errMsg).toBe("");
 
     expect(TsvType.toType([])).toBe("");
   });
@@ -28,6 +30,7 @@ describe("TsvType - edge cases", () => {
     const input = "col1\tcol2";
     const [parsed, errMsg] = TsvType.fromType(input);
     expect(parsed).toEqual([]);
+    expect(errMsg).toBe("");
   });
 
   test("failure/error case: calling fromType with non-string (undefined) should throw", () => {
@@ -44,6 +47,7 @@ describe("TsvType - edge cases", () => {
 
     // The parser is tolerant and treats tabs inside quotes as data; the second header column becomes empty
     expect(parsed).toEqual([{ col1: "a\tb\tc", col2: "" }]);
+    expect(errMsg).toBe("");
   });
 
   test("escapes: fields with newlines, tabs, and quotes roundtrip", () => {
@@ -70,6 +74,7 @@ describe("TsvType - edge cases", () => {
     expect(parsed[0].b).toBe(original[0].b);
     expect(parsed[0].c).toBe(original[0].c);
     expect(parsed[0].d).toBe(original[0].d);
+    expect(errMsg).toBe("");
   });
 
   test("handles CRLF line endings (\\r\\n) correctly", () => {
@@ -77,6 +82,7 @@ describe("TsvType - edge cases", () => {
     // fromType should handle CRLF as line breaks
     const [parsed, errMsg] = TsvType.fromType(input);
     expect(parsed).toEqual([{ h1: "v1", h2: "v2" }]);
+    expect(errMsg).toBe("");
   });
 
   test("handles trailing empty fields and multiple consecutive tabs", () => {
@@ -85,6 +91,7 @@ describe("TsvType - edge cases", () => {
     const [parsed, errMsg] = TsvType.fromType(input);
     // b is empty string, d is empty string (trailing empty field preserved)
     expect(parsed).toEqual([{ a: "1", b: "", c: "3", d: "" }]);
+    expect(errMsg).toBe("");
   });
 
   test("toType treats null and undefined as empty fields and parsing yields empty strings", () => {
@@ -95,6 +102,7 @@ describe("TsvType - edge cases", () => {
     expect(tsv).toContain("\t\t");
     const [parsed, errMsg] = TsvType.fromType(tsv);
     expect(parsed).toEqual([{ x: "", y: "", z: "ok" }]);
+    expect(errMsg).toBe("");
   });
 
   test("Prettify trims trailing whitespace/tabs and normalizes CRLF to LF", () => {
@@ -113,6 +121,7 @@ describe("TsvType - edge cases", () => {
     const tsv = TsvType.toType(data);
     const [parsed, errMsg] = TsvType.fromType(tsv);
     expect(parsed[0].big).toBe(big);
+    expect(errMsg).toBe("");
   });
 
   test("toType header ordering: union of keys preserves insertion order across rows", () => {
