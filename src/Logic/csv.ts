@@ -21,7 +21,7 @@ export const CsvType: Settings = {
       throw new TypeError("toType expects an array of objects");
     if (ir.length === 0) return "";
 
-    const { data } = unparse(ir, {
+    const data = unparse(ir, {
       quotes: true,
       delimiter: ",",
       header: true,

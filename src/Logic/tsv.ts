@@ -24,13 +24,12 @@ export const TsvType: Settings = {
       throw new TypeError("toType expects an array of objects");
     if (ir.length === 0) return "";
 
-    const { data, errors } = unparse(ir, {
+    const data = unparse(ir, {
       quotes: true,
       delimiter: "\t",
       header: true,
     });
 
-    console.log(errors);
     return data as string;
   },
 };
