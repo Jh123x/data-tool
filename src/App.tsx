@@ -115,7 +115,7 @@ const App = () => {
           Toggle Autodetect
         </Button>
       </Row>
-      <InputField placeholder="Input Data" setValue={setValue} value={value} />
+      <InputField placeholder="Input Data" setValue={setValue} />
       <LanguageDropdown
         label="To Format"
         currSelection={toLang.language}
