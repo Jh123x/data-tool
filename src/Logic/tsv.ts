@@ -2,6 +2,7 @@ import type { Data, Result } from "../Components/types";
 import { SupportedLanguage } from "../Components/types";
 import type { Settings } from "./types";
 import { parse, unparse } from "papaparse";
+import { l } from "@vitest/runner/dist/tasks.d-C7UxawJ9";
 
 export const TsvType: Settings = {
   language: SupportedLanguage.tsv,
@@ -16,7 +17,9 @@ export const TsvType: Settings = {
       header: true,
       skipEmptyLines: true,
     });
-    return [data as Data, errors.map((x) => x.message).join("\n")];
+    const errMsg = errors.map((x) => x.message).join("\n")
+    if (errMsg.length > 0) return [[], errMsg]
+    return [data as Data, ""];
   },
 
   toType: (ir: Data): string => {

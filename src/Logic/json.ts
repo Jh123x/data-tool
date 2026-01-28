@@ -22,7 +22,18 @@ export const JsonType: Settings = {
       if (!(result instanceof Array)) {
         return [[], "Only JSON arrays are supported"];
       }
-      return [result, ""];
+      const headers = new Set<string>();
+      for (const row of result) {
+        for (const key of Object.keys(row)) headers.add(key)
+      }
+
+      return [result.map((obj) => {
+        for (const k of headers.values()) {
+          if (k in obj) continue
+          obj[k] = ""
+        }
+        return obj
+      }), ""];
     } catch (error) {
       return [[], String(error)];
     }
