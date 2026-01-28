@@ -14,7 +14,9 @@ export const CsvType: Settings = {
       header: true,
       skipEmptyLines: true,
     });
-    return [data as Data, errors.map((x) => x.message).join("\n")];
+    const errMsg = errors.map((x) => x.message).join("\n")
+    if (errMsg.length > 0) return [[], errMsg]
+    return [data as Data, ""];
   },
   toType: (ir: Data): string => {
     if (!Array.isArray(ir))
