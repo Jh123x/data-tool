@@ -1,5 +1,5 @@
 import { getSettings } from "../Logic/resolver";
-import { MessageData } from "./types";
+import type { MessageData } from "./types";
 
 export const WorkFn = (event: MessageEvent) => {
   try {
