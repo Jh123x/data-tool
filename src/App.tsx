@@ -12,6 +12,7 @@ import { GetSettings, SetSettings } from "./Logic/storage";
 import type { UserSettings } from "./Logic/user_settings";
 import { debounce } from "lodash";
 import type { MessageData } from "./Worker/types";
+import { spawnWorker } from "./Logic/worker";
 
 const App = () => {
   const defaultSettings = GetSettings();
@@ -27,6 +28,18 @@ const App = () => {
   const [isAutoDetect, setAutoDetect] = useState<boolean>(
     defaultSettings.isAutoDetect,
   );
+
+  const workerFn = async (event: MessageEvent) => {
+    const [tmp, errMsg] = event.data;
+    if ((errMsg ?? "") === "") {
+      setIR(tmp);
+      return;
+    }
+    notifyUser(errMsg);
+    setIR([]);
+  };
+
+  const [worker, setWorker] = useState<Worker>(spawnWorker(workerFn));
 
   // Save the user settings.
   useEffect(() => {
@@ -64,29 +77,18 @@ const App = () => {
       return;
     }
 
-    const worker = new Worker(new URL("./Worker/parsing.ts", import.meta.url), {
-      type: "module",
-    });
-
-    worker.onmessage = (event: MessageEvent) => {
-      const [tmp, errMsg] = event.data;
-      if ((errMsg ?? "") === "") {
-        setIR(tmp);
-        return;
-      }
-      notifyUser(errMsg);
-      setIR([]);
-    };
-
-    worker.postMessage({
-      fromType: fromLang.language,
-      data: value,
-    } as MessageData);
+    worker.postMessage(
+      {
+        fromType: fromLang.language,
+        data: value,
+      } as MessageData
+    );
 
     return () => {
       worker.terminate();
+      setWorker(spawnWorker(workerFn))
     };
-  }, [fromLang, value, api]);
+  }, [fromLang, value, api, worker]);
 
   // Lazy loading for bulky container
   const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
