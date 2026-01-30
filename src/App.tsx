@@ -41,7 +41,7 @@ const App = () => {
     [],
   );
 
-  const workerFn = useCallback((event: MessageEvent) => {
+  const workerFn = useCallback(async (event: MessageEvent) => {
     const [tmp, errMsg] = event.data;
     if ((errMsg ?? "") === "") {
       setIR(tmp);
@@ -51,7 +51,7 @@ const App = () => {
     setIR([]);
   }, [setIR, notifyUser]);
 
-  const [worker, setWorker] = useState<Worker>(spawnWorker(workerFn));
+  const [worker, setWorker] = useState<Worker | null>(null);
 
   // Save the user settings.
   useEffect(() => {
@@ -77,16 +77,18 @@ const App = () => {
       return;
     }
 
-    worker.postMessage(
-      {
-        fromType: fromLang.language,
-        data: value,
-      } as MessageData
-    );
+    if (!worker) return setWorker(spawnWorker);
+
+    worker.postMessage({
+      fromType: fromLang.language,
+      data: value,
+    } as MessageData);
+
+    worker.onmessage = workerFn
 
     return () => {
       worker.terminate();
-      setWorker(spawnWorker(workerFn))
+      setWorker(null);
     };
   }, [fromLang, value, api, worker]);
 
@@ -101,29 +103,25 @@ const App = () => {
         title="Data Converter"
         subText="Convert data between different formats."
       />
-      <Typography>From Format</Typography>
+      <Typography.Title level={3}>From Format</Typography.Title>
       <Row>
         <LanguageDropdown
-          label="From Format"
           currSelection={fromLang.language}
           disabled={isAutoDetect}
           setSelectedOption={(res) => setFromLang(getSettings(res))}
         />
         <Button
-          onClick={() => {
-            setAutoDetect(!isAutoDetect);
-          }}
+          onClick={() => { setAutoDetect(!isAutoDetect) }}
         >
           Toggle Autodetect
         </Button>
       </Row>
       <InputField placeholder="Input Data" setValue={setValue} value={value} />
       <LanguageDropdown
-        label="To Format"
         currSelection={toLang.language}
         setSelectedOption={(res) => setToLang(getSettings(res))}
       />
-      <Typography>To Format</Typography>
+      <Typography.Title level={3}>To Format</Typography.Title>
       <Suspense fallback={<Loading />}>
         <CopyFormatComponent notificationAPI={api} irValue={ir} />
         <CodeEditorComponent

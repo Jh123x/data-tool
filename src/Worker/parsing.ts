@@ -1,7 +1,7 @@
 import { getSettings } from "../Logic/resolver";
 import type { MessageData } from "./types";
 
-export const WorkFn = (event: MessageEvent) => {
+export const WorkFn = async(event: MessageEvent) => {
   try {
     const { fromType, data }: MessageData = event.data;
     const fromLang = getSettings(fromType);

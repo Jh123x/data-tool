@@ -5,3 +5,4 @@ export const DANGEROUS_KEYS = new Set([
   "constructor",
 ]);
 export const SPREADSHEET_DANGEROUS_START = /^[=+\-@]/;
+
