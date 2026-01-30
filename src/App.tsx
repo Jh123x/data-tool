@@ -29,7 +29,19 @@ const App = () => {
     defaultSettings.isAutoDetect,
   );
 
-  const workerFn = async (event: MessageEvent) => {
+  // Create debounced update
+  const notifyUser = useCallback(
+    debounce((errMsg) => {
+      api.error({
+        title: "Error Format",
+        description: errMsg,
+        duration: 2,
+      });
+    }, 200),
+    [],
+  );
+
+  const workerFn = useCallback((event: MessageEvent) => {
     const [tmp, errMsg] = event.data;
     if ((errMsg ?? "") === "") {
       setIR(tmp);
@@ -37,7 +49,7 @@ const App = () => {
     }
     notifyUser(errMsg);
     setIR([]);
-  };
+  }, [setIR, notifyUser]);
 
   const [worker, setWorker] = useState<Worker>(spawnWorker(workerFn));
 
@@ -57,18 +69,6 @@ const App = () => {
     const detectedSettings = detectFormat(value);
     setFromLang(detectedSettings);
   }, [isAutoDetect, value]);
-
-  // Create debounced update
-  const notifyUser = useCallback(
-    debounce((errMsg) => {
-      api.error({
-        title: "Error Format",
-        description: errMsg,
-        duration: 2,
-      });
-    }, 200),
-    [],
-  );
 
   // Update Intermediate Representation.
   useEffect(() => {

@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Col } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -31,7 +31,7 @@ export const CodeEditor = ({
   };
 
   return (
-    <div
+    <Col
       style={{
         position: "relative",
       }}
@@ -60,7 +60,7 @@ export const CodeEditor = ({
       >
         {results}
       </SyntaxHighlighter>
-    </div>
+    </Col>
   );
 };
 
