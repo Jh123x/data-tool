@@ -84,7 +84,7 @@ const App = () => {
       data: value,
     } as MessageData);
 
-    worker.onmessage = workerFn
+    worker.onmessage = async (event) => {workerFn(event)}
 
     return () => {
       worker.terminate();
