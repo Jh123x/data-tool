@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { ALL_DATA } from "../Logic/resolver";
 
 interface DropdownProps {
-  label: string;
   currSelection: string;
   disabled?: boolean;
   setSelectedOption: (selected: string) => void;

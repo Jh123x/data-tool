@@ -4,6 +4,7 @@ exports[`CodeEditor > should match snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
+      class="ant-col css-dev-only-do-not-override-3uaqrl css-var-root"
       style="position: relative;"
     >
       <button

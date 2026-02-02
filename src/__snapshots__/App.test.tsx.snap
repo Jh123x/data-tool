@@ -12,11 +12,11 @@ exports[`App > should render correctly 1`] = `
   >
     Convert data between different formats.
   </span>
-  <article
+  <h3
     class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
   >
     From Format
-  </article>
+  </h3>
   <div
     class="ant-row css-dev-only-do-not-override-3uaqrl css-var-root"
   >
@@ -60,11 +60,11 @@ exports[`App > should render correctly 1`] = `
       </span>
     </button>
   </div>
-  <article
+  <h3
     class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
   >
     To Format
-  </article>
+  </h3>
   <div
     class="ant-flex css-dev-only-do-not-override-3uaqrl css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
     dir="column"

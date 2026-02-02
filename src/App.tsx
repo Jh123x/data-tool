@@ -12,6 +12,7 @@ import { GetSettings, SetSettings } from "./Logic/storage";
 import type { UserSettings } from "./Logic/user_settings";
 import { debounce } from "lodash";
 import type { MessageData } from "./Worker/types";
+import { spawnWorker } from "./Logic/worker";
 
 const App = () => {
   const defaultSettings = GetSettings();
@@ -27,6 +28,30 @@ const App = () => {
   const [isAutoDetect, setAutoDetect] = useState<boolean>(
     defaultSettings.isAutoDetect,
   );
+
+  // Create debounced update
+  const notifyUser = useCallback(
+    debounce((errMsg) => {
+      api.error({
+        title: "Error Format",
+        description: errMsg,
+        duration: 2,
+      });
+    }, 200),
+    [],
+  );
+
+  const workerFn = useCallback(async (event: MessageEvent) => {
+    const [tmp, errMsg] = event.data;
+    if ((errMsg ?? "") === "") {
+      setIR(tmp);
+      return;
+    }
+    notifyUser(errMsg);
+    setIR([]);
+  }, [setIR, notifyUser]);
+
+  const [worker, setWorker] = useState<Worker | null>(null);
 
   // Save the user settings.
   useEffect(() => {
@@ -45,18 +70,6 @@ const App = () => {
     setFromLang(detectedSettings);
   }, [isAutoDetect, value]);
 
-  // Create debounced update
-  const notifyUser = useCallback(
-    debounce((errMsg) => {
-      api.error({
-        title: "Error Format",
-        description: errMsg,
-        duration: 2,
-      });
-    }, 200),
-    [],
-  );
-
   // Update Intermediate Representation.
   useEffect(() => {
     if (value.length === 0) {
@@ -64,29 +77,20 @@ const App = () => {
       return;
     }
 
-    const worker = new Worker(new URL("./Worker/parsing.ts", import.meta.url), {
-      type: "module",
-    });
-
-    worker.onmessage = (event: MessageEvent) => {
-      const [tmp, errMsg] = event.data;
-      if ((errMsg ?? "") === "") {
-        setIR(tmp);
-        return;
-      }
-      notifyUser(errMsg);
-      setIR([]);
-    };
+    if (!worker) return setWorker(spawnWorker);
 
     worker.postMessage({
       fromType: fromLang.language,
       data: value,
     } as MessageData);
 
+    worker.onmessage = async (event) => { workerFn(event) }
+
     return () => {
       worker.terminate();
+      setWorker(null);
     };
-  }, [fromLang, value, api]);
+  }, [fromLang, value, api, worker]);
 
   // Lazy loading for bulky container
   const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
@@ -99,29 +103,25 @@ const App = () => {
         title="Data Converter"
         subText="Convert data between different formats."
       />
-      <Typography>From Format</Typography>
+      <Typography.Title level={3}>From Format</Typography.Title>
       <Row>
         <LanguageDropdown
-          label="From Format"
           currSelection={fromLang.language}
           disabled={isAutoDetect}
           setSelectedOption={(res) => setFromLang(getSettings(res))}
         />
         <Button
-          onClick={() => {
-            setAutoDetect(!isAutoDetect);
-          }}
+          onClick={() => { setAutoDetect(!isAutoDetect) }}
         >
           Toggle Autodetect
         </Button>
       </Row>
       <InputField placeholder="Input Data" setValue={setValue} />
       <LanguageDropdown
-        label="To Format"
         currSelection={toLang.language}
         setSelectedOption={(res) => setToLang(getSettings(res))}
       />
-      <Typography>To Format</Typography>
+      <Typography.Title level={3}>To Format</Typography.Title>
       <Suspense fallback={<Loading />}>
         <CopyFormatComponent notificationAPI={api} irValue={ir} />
         <CodeEditorComponent
