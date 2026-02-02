@@ -28,7 +28,7 @@ describe("TSV Security Tests", () => {
       // Prefer that parsed objects don't have Object.prototype as prototype (safer)
       expect(
         Object.getPrototypeOf(obj) === null ||
-          Object.getPrototypeOf(obj) === Object.prototype,
+        Object.getPrototypeOf(obj) === Object.prototype,
       ).toBeTruthy();
 
       // Also assert that there is not a direct '__proto__' property
@@ -39,8 +39,9 @@ describe("TSV Security Tests", () => {
   });
 
   test("extra fields are stored under numeric keys for TSV", () => {
-    const input = "a\tb\n1\t2\t3\n";
+    const input = "a\tb\t2\r\n1\t2\t3\r\n";
     const [parsed, errMsg] = TsvType.fromType(input);
+    expect(errMsg).toBe("");
     expect(parsed.length).toBe(1);
     const row = parsed[0];
     expect(row["a"]).toBe("1");
