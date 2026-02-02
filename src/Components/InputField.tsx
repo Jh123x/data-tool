@@ -10,8 +10,10 @@ interface InputProps {
 }
 
 export const InputField = ({ placeholder, setValue, value }: InputProps) => {
+  // Use State required here to ensure that the input that shows up is fast but the loading is debounced.
   const [field, setField] = useState(value);
   const setFn = useCallback(debounce(setValue ?? (() => { }), 200), [setValue]);
+
   return (
     <TextArea
       rows={10}
