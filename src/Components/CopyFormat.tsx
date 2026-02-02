@@ -8,9 +8,10 @@ import { Data } from "./types";
 interface CopyFormatProps {
   notificationAPI: NotificationInstance;
   irValue: Data;
+  setValue: (val: string) => void;
 }
 
-export const CopyFormat = ({ notificationAPI, irValue }: CopyFormatProps) => {
+export const CopyFormat = ({ notificationAPI, irValue, setValue }: CopyFormatProps) => {
   return (
     <>
       <Row
@@ -62,6 +63,11 @@ export const CopyFormat = ({ notificationAPI, irValue }: CopyFormatProps) => {
                   }}
                 >
                   Download {currLanguangeName}
+                </Button>
+                <Button
+                  onClick={() => setValue(currType.getSample())}
+                >
+                  Example {currLanguangeName}
                 </Button>
               </Card>
             </Col>

@@ -3,12 +3,14 @@ import { SupportedLanguage } from "../Components/types";
 import type { Settings } from "./types";
 import { DANGEROUS_KEYS, SPREADSHEET_DANGEROUS_START } from "./consts";
 import { parseSV, stringifySV } from "./format_helper";
+import { CSV_EXAMPLE } from "./examples";
+
+
 
 export const CsvType: Settings = {
   language: SupportedLanguage.csv,
-  Prettify: (code: string): string => {
-    return code;
-  },
+  Prettify: (code: string): string => code,
+  getSample: (): string => CSV_EXAMPLE,
   fromType: (code: string): Result => {
     const result = parseSV(code, ",");
 

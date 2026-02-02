@@ -3,6 +3,7 @@ import { SupportedLanguage } from "../Components/types";
 import type { Settings } from "./types";
 import { SPREADSHEET_DANGEROUS_START, DANGEROUS_KEYS } from "./consts";
 import { parseSV, stringifySV } from "./format_helper";
+import { TSV_EXAMPLE } from "./examples";
 
 /**
  * Ensure the input is a string and within allowed size.
@@ -18,7 +19,7 @@ function ensureStringInput(input: unknown, name = "input"): string {
 export const TsvType: Settings = {
   language: SupportedLanguage.tsv,
 
-  Prettify: (code: unknown): string => {
+  Prettify: (code: string): string => {
     try {
       const input = ensureStringInput(code, "code");
       // Normalize CRLF -> LF, trim trailing whitespace/tabs per line
@@ -28,10 +29,10 @@ export const TsvType: Settings = {
         .map((ln) => ln.replace(/[ \t]+$/g, ""))
         .join("\n");
     } catch {
-      // In case of invalid input type or oversized input, return a safe string fallback
-      return String(code ?? "");
+      return code;
     }
   },
+  getSample: (): string => TSV_EXAMPLE,
 
   fromType: (code: unknown): Result => {
     // Validate input first so invalid types cause a clear exception (instead of being swallowed)
