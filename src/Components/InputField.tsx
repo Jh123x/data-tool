@@ -1,6 +1,6 @@
 import { Input } from "antd";
 import { debounce } from "lodash";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 const { TextArea } = Input;
 
 interface InputProps {
@@ -10,13 +10,17 @@ interface InputProps {
 }
 
 export const InputField = ({ placeholder, setValue, value }: InputProps) => {
+  const [field, setField] = useState(value);
   const setFn = useCallback(debounce(setValue ?? (() => { }), 200), [setValue]);
   return (
     <TextArea
       rows={10}
-      value={value}
+      value={field}
       placeholder={placeholder}
-      onChange={(event) => setFn(event.target.value)}
+      onChange={(event) => {
+        setFn(event.target.value)
+        setField(event.target.value)
+      }}
     />
   );
 };
