@@ -19,7 +19,7 @@ const App = () => {
   const defaultSettings = GetSettings();
   const [api, contextHolder] = notification.useNotification();
   const [value, setValue] = useState<string>("");
-  const debouncedValue = useDebounce(value);
+  const debouncedValue = useDebounce(value, 200);
   const [fromLang, setFromLang] = useState<Settings>(
     getSettings(defaultSettings.fromLang),
   );
