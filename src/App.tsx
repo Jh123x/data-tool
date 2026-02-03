@@ -85,8 +85,7 @@ const App = () => {
       setWorker(spawnWorker);
       return;
     }
-  
-    console.log(debouncedValue);
+
     worker.postMessage({
       fromType: fromLang.language,
       data: debouncedValue,
