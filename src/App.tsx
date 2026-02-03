@@ -63,7 +63,7 @@ const App = () => {
       toLang: toLang.language,
     };
     SetSettings(userSettings);
-  }, [fromLang, toLang, value, isAutoDetect]);
+  }, [fromLang, toLang, isAutoDetect]);
 
   // Format detection.
   useEffect(() => {
@@ -75,12 +75,18 @@ const App = () => {
   // Update Intermediate Representation.
   useEffect(() => {
     if (debouncedValue.length === 0) {
+      // If value is empty skip
       setIR([]);
       return;
     }
 
-    if (!worker) return setWorker(spawnWorker);
-
+    if (!worker) {
+      // This triggers this useEffect to run again
+      setWorker(spawnWorker);
+      return;
+    }
+  
+    console.log(debouncedValue);
     worker.postMessage({
       fromType: fromLang.language,
       data: debouncedValue,

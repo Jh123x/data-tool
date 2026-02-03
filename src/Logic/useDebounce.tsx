@@ -10,9 +10,7 @@ function useDebounce<T>(value: T, delay: number) {
     }, delay);
 
     // Cleanup function: Cancel the timeout if value changes again before the delay
-    return () => {
-      clearTimeout(handler);
-    };
+    return () => {clearTimeout(handler)};
   }, [value, delay]); // Rerun effect if value or delay changes
 
   return debouncedValue;
