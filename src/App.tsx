@@ -13,11 +13,13 @@ import type { UserSettings } from "./Logic/user_settings";
 import { debounce } from "lodash";
 import type { MessageData } from "./Worker/types";
 import { spawnWorker } from "./Logic/worker";
+import useDebounce from "./Logic/useDebounce";
 
 const App = () => {
   const defaultSettings = GetSettings();
   const [api, contextHolder] = notification.useNotification();
   const [value, setValue] = useState<string>("");
+  const debouncedValue = useDebounce(value);
   const [fromLang, setFromLang] = useState<Settings>(
     getSettings(defaultSettings.fromLang),
   );
@@ -72,7 +74,7 @@ const App = () => {
 
   // Update Intermediate Representation.
   useEffect(() => {
-    if (value.length === 0) {
+    if (debouncedValue.length === 0) {
       setIR([]);
       return;
     }
@@ -81,7 +83,7 @@ const App = () => {
 
     worker.postMessage({
       fromType: fromLang.language,
-      data: value,
+      data: debouncedValue,
     } as MessageData);
 
     worker.onmessage = async (event) => { workerFn(event) }
@@ -90,7 +92,7 @@ const App = () => {
       worker.terminate();
       setWorker(null);
     };
-  }, [fromLang, value, api, worker]);
+  }, [fromLang, debouncedValue, api, worker]);
 
   // Lazy loading for bulky container
   const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
