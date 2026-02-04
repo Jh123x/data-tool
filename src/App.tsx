@@ -83,6 +83,7 @@ const App = () => {
   // Format detection.
   useEffect(() => {
     if (!isAutoDetect) return;
+    if (debouncedValue.length === 0) return;
     const detectedSettings = detectFormat(debouncedValue);
     setFromLang(detectedSettings);
   }, [isAutoDetect, debouncedValue]);
