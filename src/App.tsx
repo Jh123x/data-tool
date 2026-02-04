@@ -56,9 +56,9 @@ const App = () => {
 
   const [worker, setWorker] = useState<Worker | null>(null);
 
-// Lazy loading for bulky container
-const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
-const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
+  // Lazy loading for bulky container
+  const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
+  const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
 
 
   // Save the user settings.

@@ -3,7 +3,7 @@ import { describe, test, expect } from "vitest";
 
 describe("TsvType - edge cases", () => {
   test("parses and stringifies simple TSV (success case)", () => {
-    const input = '"name"\t"age"\r\n"Alice"\t"30"\r\n"Bob"\t"25"';
+    const input = 'name\tage\r\nAlice\t30\r\nBob\t25';
     const [data, errMsg] = TsvType.fromType(input);
 
     expect(errMsg).toBe("");
