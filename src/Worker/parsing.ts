@@ -4,9 +4,9 @@ import type { MessageData } from "./types";
 export const WorkFn = async (event: MessageEvent) => {
   try {
     const { fromType, data }: MessageData = event.data;
-    if (data.length > 5000 * 1000) {
-      self.postMessage([[], "Data too large to be processed"])
-      return
+    if (data.length > 100000 * 1000) {
+      self.postMessage([[], "Data too large to be processed"]);
+      return;
     }
 
     const fromLang = getSettings(fromType);
@@ -17,4 +17,3 @@ export const WorkFn = async (event: MessageEvent) => {
 };
 
 self.onmessage = WorkFn;
-
