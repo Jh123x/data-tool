@@ -83,9 +83,9 @@ const App = () => {
   // Format detection.
   useEffect(() => {
     if (!isAutoDetect) return;
-    const detectedSettings = detectFormat(value);
+    const detectedSettings = detectFormat(debouncedValue);
     setFromLang(detectedSettings);
-  }, [isAutoDetect, value]);
+  }, [isAutoDetect, debouncedValue]);
 
   // Update Intermediate Representation.
   useEffect(() => {
