@@ -34,7 +34,6 @@ export const CsvType: Settings = {
     if (ir.length === 0) return "";
 
     const data = unparse(ir, exportCSVSettings);
-
     return data as string;
   },
 };
