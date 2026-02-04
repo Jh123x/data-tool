@@ -15,9 +15,6 @@ import type { MessageData } from "./Worker/types";
 import { spawnWorker } from "./Logic/worker";
 import useDebounce from "./Logic/useDebounce";
 
-// Lazy loading for bulky container
-const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
-const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
 
 const App = () => {
   const defaultSettings = GetSettings();
@@ -59,6 +56,11 @@ const App = () => {
 
   const [worker, setWorker] = useState<Worker | null>(null);
 
+// Lazy loading for bulky container
+const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
+const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
+
+
   // Save the user settings.
   useEffect(() => {
     const userSettings: UserSettings = {
@@ -84,9 +86,9 @@ const App = () => {
       return;
     }
 
+    // Wait for worker to spawn
     if (!worker) {
-      // This triggers this useEffect to run again
-      setWorker(spawnWorker);
+      setWorker(spawnWorker())
       return;
     }
 
@@ -96,11 +98,10 @@ const App = () => {
     } as MessageData);
 
     worker.onmessage = async (event) => { workerFn(event) }
-
     return () => {
-      worker.terminate();
-      setWorker(null);
-    };
+      worker.terminate()
+      setWorker(null)
+    }
   }, [fromLang, debouncedValue, worker]);
 
   return (

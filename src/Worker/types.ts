@@ -4,3 +4,4 @@ export interface MessageData {
   fromType: SupportedLanguage;
   data: string;
 }
+
