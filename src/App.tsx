@@ -15,6 +15,10 @@ import type { MessageData } from "./Worker/types";
 import { spawnWorker } from "./Logic/worker";
 import useDebounce from "./Logic/useDebounce";
 
+// Lazy loading for bulky container
+const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
+const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
+
 const App = () => {
   const defaultSettings = GetSettings();
   const [api, contextHolder] = notification.useNotification();
@@ -98,10 +102,6 @@ const App = () => {
       setWorker(null);
     };
   }, [fromLang, debouncedValue, api, worker]);
-
-  // Lazy loading for bulky container
-  const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
-  const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
 
   return (
     <>
