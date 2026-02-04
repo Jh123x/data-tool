@@ -32,7 +32,7 @@ export const CodeEditor = ({
           style={{
             position: "absolute",
             top: "10px",
-            right: "10px",
+            right: "25px",
             display: results.length === 0 ? "none" : "block",
           }}
           hidden={results.length == 0}
