@@ -130,7 +130,12 @@ const App = () => {
       />
       <Typography.Title level={3}>To Format</Typography.Title>
       <Suspense fallback={<Loading />}>
-        <CopyFormatComponent notificationAPI={api} irValue={ir} setValue={setValue} />
+        <CopyFormatComponent
+          notificationAPI={api}
+          irValue={ir}
+          setValue={setValue}
+          setLang={setFromLang}
+        />
         <CodeEditorComponent
           toLang={toLang}
           irValue={ir}

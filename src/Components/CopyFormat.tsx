@@ -9,9 +9,10 @@ interface CopyFormatProps {
   notificationAPI: NotificationInstance;
   irValue: Data;
   setValue: (val: string) => void;
+  setLang: (val: Settings) => void;
 }
 
-export const CopyFormat = ({ notificationAPI, irValue, setValue }: CopyFormatProps) => {
+export const CopyFormat = ({ notificationAPI, irValue, setValue, setLang }: CopyFormatProps) => {
   return (
     <>
       <Row
@@ -65,7 +66,10 @@ export const CopyFormat = ({ notificationAPI, irValue, setValue }: CopyFormatPro
                   Download {currLanguangeName}
                 </Button>
                 <Button
-                  onClick={() => setValue(currType.getSample())}
+                  onClick={() => {
+                    setLang(currType)
+                    setValue(currType.getSample())
+                  }}
                 >
                   Example {currLanguangeName}
                 </Button>
