@@ -8,12 +8,12 @@ const csvImportCSVSettings = {
   delimiter: ",",
   header: true,
   skipEmptyLines: true,
-}
+};
 
 const exportCSVSettings = {
   delimiter: ",",
   header: true,
-}
+};
 
 export const CsvType: Settings = {
   language: SupportedLanguage.csv,
@@ -21,8 +21,11 @@ export const CsvType: Settings = {
   getSample: (): string => CSV_EXAMPLE,
   fromType: (code: string): Result => {
     const { data, errors } = parse(code, csvImportCSVSettings);
-    const errMsg = errors.map((x) => x.message).join("\n")
-    if (errMsg.length > 0) return [[], errMsg]
+    const errMsg = errors
+      .map((x) => x.message)
+      .slice(0, 10)
+      .join("\n");
+    if (errMsg.length > 0) return [[], errMsg];
     return [data as Data, ""];
   },
   toType: (ir: Data): string => {

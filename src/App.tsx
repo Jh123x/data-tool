@@ -1,4 +1,11 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from "react";
+import {
+  lazy,
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { getSettings } from "./Logic/resolver";
@@ -36,16 +43,19 @@ const App = () => {
   );
 
   // Create debounced update
-  const notifyUser = useCallback(
-    debounce((errMsg) => {
-      api.error({
-        title: "Error Format",
-        description: errMsg,
-        duration: 2,
-      });
-    }, 200),
+  const notifyUser = useMemo(
+    () =>
+      debounce((errMsg: string) => {
+        api.error({
+          title: "Error Format",
+          description: errMsg,
+          duration: 2,
+        });
+      }, 200),
     [api],
   );
+
+  useEffect(() => () => notifyUser.cancel(), [notifyUser]);
 
   const workerFn = useCallback(
     async (event: MessageEvent) => {
