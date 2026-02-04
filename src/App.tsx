@@ -98,14 +98,15 @@ const App = () => {
 
     // Wait for worker to spawn
     const worker = spawnWorker();
+    worker.onmessage = async (event) => {
+      workerFn(event);
+    };
+
     worker.postMessage({
       fromType: fromLang.language,
       data: debouncedValue,
     } as MessageData);
 
-    worker.onmessage = async (event) => {
-      workerFn(event);
-    };
     return () => {
       worker.terminate();
     };
