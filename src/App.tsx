@@ -44,7 +44,7 @@ const App = () => {
         duration: 2,
       });
     }, 200),
-    [],
+    [api],
   );
 
   const workerFn = useCallback(async (event: MessageEvent) => {
@@ -101,7 +101,7 @@ const App = () => {
       worker.terminate();
       setWorker(null);
     };
-  }, [fromLang, debouncedValue, api, worker]);
+  }, [fromLang, debouncedValue, worker]);
 
   return (
     <>
