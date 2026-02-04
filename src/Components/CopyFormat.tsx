@@ -1,9 +1,9 @@
 import type { Settings } from "../Logic/types";
 import { ALL_DATA } from "../Logic/resolver";
 import { Button, Card, Col, Row, Typography } from "antd";
-import { NotificationInstance } from "antd/es/notification/interface";
+import type { NotificationInstance } from "antd/es/notification/interface";
 import DownloadAsFile from "../Logic/download";
-import { Data } from "./types";
+import type { Data } from "./types";
 
 interface CopyFormatProps {
   notificationAPI: NotificationInstance;
@@ -12,14 +12,15 @@ interface CopyFormatProps {
   setLang: (val: Settings) => void;
 }
 
-export const CopyFormat = ({ notificationAPI, irValue, setValue, setLang }: CopyFormatProps) => {
+export const CopyFormat = ({
+  notificationAPI,
+  irValue,
+  setValue,
+  setLang,
+}: CopyFormatProps) => {
   return (
     <>
-      <Row
-        style={{
-          padding: "10px",
-        }}
-      >
+      <Row style={{ padding: "10px" }}>
         {ALL_DATA.map((currType: Settings, index: number) => {
           const currLanguangeName = currType.language.toUpperCase();
           return (
@@ -67,8 +68,8 @@ export const CopyFormat = ({ notificationAPI, irValue, setValue, setLang }: Copy
                 </Button>
                 <Button
                   onClick={() => {
-                    setLang(currType)
-                    setValue(currType.getSample())
+                    setLang(currType);
+                    setValue(currType.getSample());
                   }}
                 >
                   Example {currLanguangeName}

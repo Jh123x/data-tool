@@ -1,10 +1,10 @@
 import {
   lazy,
-  Suspense,
   useCallback,
   useEffect,
   useMemo,
   useState,
+  Suspense,
 } from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
@@ -14,17 +14,14 @@ import { PageTitle } from "./Components/PageTitle";
 import { Button, notification, Row, Typography } from "antd";
 import type { Data } from "./Components/types";
 import { detectFormat } from "./Logic/auto_detect_format";
-import { Loading } from "./Components/Loading";
 import { GetSettings, SetSettings } from "./Logic/storage";
 import type { UserSettings } from "./Logic/user_settings";
 import { debounce } from "lodash";
 import type { MessageData } from "./Worker/types";
-import { spawnWorker } from "./Logic/worker";
+import { spawnParserWorker } from "./Logic/worker";
 import useDebounce from "./Logic/useDebounce";
-
-// Lazy loading for bulky container
-const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
-const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
+import { Loading } from "./Components/Loading";
+import { OutputSection } from "./Components/OutputSection";
 
 const App = () => {
   const defaultSettings = GetSettings();
@@ -97,7 +94,7 @@ const App = () => {
     }
 
     // Wait for worker to spawn
-    const worker = spawnWorker();
+    const worker = spawnParserWorker();
     worker.onmessage = async (event) => {
       workerFn(event);
     };
@@ -139,20 +136,13 @@ const App = () => {
         currSelection={toLang.language}
         setSelectedOption={(res) => setToLang(getSettings(res))}
       />
-      <Typography.Title level={3}>To Format</Typography.Title>
-      <Suspense fallback={<Loading />}>
-        <CopyFormatComponent
-          notificationAPI={api}
-          irValue={ir}
-          setValue={setValue}
-          setLang={setFromLang}
-        />
-        <CodeEditorComponent
-          toLang={toLang}
-          irValue={ir}
-          notificationAPI={api}
-        />
-      </Suspense>
+      <OutputSection
+        irValue={ir}
+        toLang={toLang}
+        api={api}
+        setValue={setValue}
+        setFromLang={setFromLang}
+      />
     </>
   );
 };
