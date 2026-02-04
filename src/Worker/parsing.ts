@@ -4,7 +4,7 @@ import type { MessageData } from "./types";
 export const WorkFn = async (event: MessageEvent) => {
   try {
     const { fromType, data }: MessageData = event.data;
-    if (data.length > 100000 * 1000) {
+    if (data.length > 10_000_000) {
       self.postMessage([[], "Data too large to be processed"]);
       return;
     }
