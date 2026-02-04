@@ -15,6 +15,9 @@ import type { MessageData } from "./Worker/types";
 import { spawnWorker } from "./Logic/worker";
 import useDebounce from "./Logic/useDebounce";
 
+// Lazy loading for bulky container
+const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
+const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
 
 const App = () => {
   const defaultSettings = GetSettings();
@@ -44,22 +47,18 @@ const App = () => {
     [api],
   );
 
-  const workerFn = useCallback(async (event: MessageEvent) => {
-    const [tmp, errMsg] = event.data;
-    if ((errMsg ?? "") === "") {
-      setIR(tmp);
-      return;
-    }
-    notifyUser(errMsg);
-    setIR([]);
-  }, [setIR, notifyUser]);
-
-  const [worker, setWorker] = useState<Worker | null>(null);
-
-  // Lazy loading for bulky container
-  const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
-  const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
-
+  const workerFn = useCallback(
+    async (event: MessageEvent) => {
+      const [tmp, errMsg] = event.data;
+      if ((errMsg ?? "") === "") {
+        setIR(tmp);
+        return;
+      }
+      notifyUser(errMsg);
+      setIR([]);
+    },
+    [setIR, notifyUser],
+  );
 
   // Save the user settings.
   useEffect(() => {
@@ -87,22 +86,19 @@ const App = () => {
     }
 
     // Wait for worker to spawn
-    if (!worker) {
-      setWorker(spawnWorker())
-      return;
-    }
-
+    const worker = spawnWorker();
     worker.postMessage({
       fromType: fromLang.language,
       data: debouncedValue,
     } as MessageData);
 
-    worker.onmessage = async (event) => { workerFn(event) }
+    worker.onmessage = async (event) => {
+      workerFn(event);
+    };
     return () => {
-      worker.terminate()
-      setWorker(null)
-    }
-  }, [fromLang, debouncedValue, worker]);
+      worker.terminate();
+    };
+  }, [fromLang, debouncedValue, workerFn]);
 
   return (
     <>
@@ -119,7 +115,9 @@ const App = () => {
           setSelectedOption={(res) => setFromLang(getSettings(res))}
         />
         <Button
-          onClick={() => { setAutoDetect(!isAutoDetect) }}
+          onClick={() => {
+            setAutoDetect(!isAutoDetect);
+          }}
         >
           Toggle Autodetect
         </Button>
