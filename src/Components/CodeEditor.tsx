@@ -3,6 +3,7 @@ import type { NotificationInstance } from "antd/es/notification/interface";
 import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import type { Settings } from "../Logic/types";
+import useDebounce from "../Logic/useDebounce";
 import type { Data } from "./types";
 
 interface EditorProp {
@@ -17,11 +18,12 @@ export const CodeEditor = ({
   notificationAPI,
 }: EditorProp) => {
   const [results, setResult] = useState<string>("");
+  const debouncedIR = useDebounce<Data>(irValue, 100);
 
   useEffect(() => {
-    const resultValue = toLang.toType(irValue);
+    const resultValue = toLang.toType(debouncedIR);
     setResult(toLang.Prettify(resultValue));
-  }, [irValue, toLang]);
+  }, [debouncedIR, toLang]);
 
   const onCopy = () => {
     notificationAPI.success({
