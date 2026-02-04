@@ -10,7 +10,7 @@ const WrapperComponent = () => {
     <div>
       {contextHolder}
       <CodeEditor
-        irValue={JsonType.fromType("")[0]}
+        results="example text"
         toLang={JsonType}
         notificationAPI={api}
       />

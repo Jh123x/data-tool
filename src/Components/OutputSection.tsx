@@ -43,11 +43,12 @@ export const OutputSection = ({
         setResult(toLang.Prettify(event.data));
       });
     };
-
-    worker.postMessage({
-      toType: toLang.language,
-      data: debouncedIR,
-    } as ResultData);
+    startTransition(() => {
+      worker.postMessage({
+        toType: toLang.language,
+        data: debouncedIR,
+      } as ResultData);
+    });
 
     return () => {
       workerRef.current?.terminate();
