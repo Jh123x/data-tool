@@ -47,7 +47,7 @@ export const CodeEditor = ({
           showLineNumbers={true}
           startingLineNumber={1}
           customStyle={{
-            maxHeight: "40vh",
+            maxHeight: "100%",
             overflowY: "auto",
           }}
         >

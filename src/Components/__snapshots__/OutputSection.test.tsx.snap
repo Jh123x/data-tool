@@ -154,7 +154,7 @@ exports[`Loading > should match snapshot 1`] = `
         </span>
       </button>
       <pre
-        style="color: black; background: rgb(245, 242, 240); text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; max-height: 40vh; overflow-y: auto;"
+        style="color: black; background: rgb(245, 242, 240); text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; max-height: 100%; overflow-y: auto;"
       >
         <code
           class="language-json"
