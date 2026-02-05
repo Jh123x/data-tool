@@ -9,7 +9,7 @@ exports[`CodeEditor > should match snapshot 1`] = `
     >
       <button
         class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-        style="position: absolute; top: 10px; right: 10px; display: block;"
+        style="position: absolute; top: 10px; right: 25px; display: block;"
         type="button"
       >
         <span>
@@ -17,7 +17,7 @@ exports[`CodeEditor > should match snapshot 1`] = `
         </span>
       </button>
       <pre
-        style="color: black; background: rgb(245, 242, 240); text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; max-height: 50%;"
+        style="color: black; background: rgb(245, 242, 240); text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; max-height: 100%; overflow-y: auto;"
       >
         <code
           class="language-json"
@@ -32,17 +32,8 @@ exports[`CodeEditor > should match snapshot 1`] = `
             >
               1
             </span>
-            <span
-              class="token"
-              style="color: rgb(153, 153, 153);"
-            >
-              [
-            </span>
-            <span
-              class="token"
-              style="color: rgb(153, 153, 153);"
-            >
-              ]
+            <span>
+              example text
             </span>
           </span>
         </code>

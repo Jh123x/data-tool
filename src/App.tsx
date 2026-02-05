@@ -1,4 +1,9 @@
-import { lazy, Suspense, useCallback, useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
 import { getSettings } from "./Logic/resolver";
@@ -7,17 +12,19 @@ import { PageTitle } from "./Components/PageTitle";
 import { Button, notification, Row, Typography } from "antd";
 import type { Data } from "./Components/types";
 import { detectFormat } from "./Logic/auto_detect_format";
-import { Loading } from "./Components/Loading";
 import { GetSettings, SetSettings } from "./Logic/storage";
 import type { UserSettings } from "./Logic/user_settings";
 import { debounce } from "lodash";
 import type { MessageData } from "./Worker/types";
-import { spawnWorker } from "./Logic/worker";
+import { spawnParserWorker } from "./Logic/worker";
+import useDebounce from "./Logic/useDebounce";
+import { OutputSection } from "./Components/OutputSection";
 
 const App = () => {
   const defaultSettings = GetSettings();
   const [api, contextHolder] = notification.useNotification();
   const [value, setValue] = useState<string>("");
+  const debouncedValue = useDebounce(value, 100);
   const [fromLang, setFromLang] = useState<Settings>(
     getSettings(defaultSettings.fromLang),
   );
@@ -30,28 +37,32 @@ const App = () => {
   );
 
   // Create debounced update
-  const notifyUser = useCallback(
-    debounce((errMsg) => {
-      api.error({
-        title: "Error Format",
-        description: errMsg,
-        duration: 2,
-      });
-    }, 200),
-    [],
+  const notifyUser = useMemo(
+    () =>
+      debounce((errMsg: string) => {
+        api.error({
+          title: "Error Format",
+          description: errMsg,
+          duration: 2,
+        });
+      }, 200),
+    [api],
   );
 
-  const workerFn = useCallback(async (event: MessageEvent) => {
-    const [tmp, errMsg] = event.data;
-    if ((errMsg ?? "") === "") {
-      setIR(tmp);
-      return;
-    }
-    notifyUser(errMsg);
-    setIR([]);
-  }, [setIR, notifyUser]);
+  useEffect(() => () => notifyUser.cancel(), [notifyUser]);
 
-  const [worker, setWorker] = useState<Worker | null>(null);
+  const workerFn = useCallback(
+    async (event: MessageEvent) => {
+      const [tmp, errMsg] = event.data;
+      if ((errMsg ?? "") === "") {
+        setIR(tmp);
+        return;
+      }
+      notifyUser(errMsg);
+      setIR([]);
+    },
+    [setIR, notifyUser],
+  );
 
   // Save the user settings.
   useEffect(() => {
@@ -61,40 +72,41 @@ const App = () => {
       toLang: toLang.language,
     };
     SetSettings(userSettings);
-  }, [fromLang, toLang, value, isAutoDetect]);
+  }, [fromLang, toLang, isAutoDetect]);
 
   // Format detection.
   useEffect(() => {
     if (!isAutoDetect) return;
-    const detectedSettings = detectFormat(value);
+    if (debouncedValue.length === 0) return;
+    const detectedSettings = detectFormat(debouncedValue);
     setFromLang(detectedSettings);
-  }, [isAutoDetect, value]);
+  }, [isAutoDetect, debouncedValue]);
 
   // Update Intermediate Representation.
   useEffect(() => {
-    if (value.length === 0) {
+    // When this use effect is triggered, cancel the previous notification
+    notifyUser.cancel()
+    if (debouncedValue.length === 0) {
+      // If value is empty skip
       setIR([]);
       return;
     }
 
-    if (!worker) return setWorker(spawnWorker);
+    // Wait for worker to spawn
+    const worker = spawnParserWorker();
+    worker.onmessage = async (event) => {
+      workerFn(event);
+    };
 
     worker.postMessage({
       fromType: fromLang.language,
-      data: value,
+      data: debouncedValue,
     } as MessageData);
-
-    worker.onmessage = async (event) => { workerFn(event) }
 
     return () => {
       worker.terminate();
-      setWorker(null);
     };
-  }, [fromLang, value, api, worker]);
-
-  // Lazy loading for bulky container
-  const CodeEditorComponent = lazy(() => import("./Components/CodeEditor"));
-  const CopyFormatComponent = lazy(() => import("./Components/CopyFormat"));
+  }, [fromLang, debouncedValue, workerFn]);
 
   return (
     <>
@@ -111,25 +123,25 @@ const App = () => {
           setSelectedOption={(res) => setFromLang(getSettings(res))}
         />
         <Button
-          onClick={() => { setAutoDetect(!isAutoDetect) }}
+          onClick={() => {
+            setAutoDetect(!isAutoDetect);
+          }}
         >
           Toggle Autodetect
         </Button>
       </Row>
-      <InputField placeholder="Input Data" setValue={setValue} />
+      <InputField placeholder="Input Data" setValue={setValue} value={value} />
       <LanguageDropdown
         currSelection={toLang.language}
         setSelectedOption={(res) => setToLang(getSettings(res))}
       />
-      <Typography.Title level={3}>To Format</Typography.Title>
-      <Suspense fallback={<Loading />}>
-        <CopyFormatComponent notificationAPI={api} irValue={ir} />
-        <CodeEditorComponent
-          toLang={toLang}
-          irValue={ir}
-          notificationAPI={api}
-        />
-      </Suspense>
+      <OutputSection
+        irValue={ir}
+        toLang={toLang}
+        api={api}
+        setValue={setValue}
+        setFromLang={setFromLang}
+      />
     </>
   );
 };

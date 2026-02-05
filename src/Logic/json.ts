@@ -1,5 +1,6 @@
 import type { Data, Result } from "../Components/types";
 import { SupportedLanguage } from "../Components/types";
+import { JSON_EXAMPLE } from "./examples";
 import type { Settings } from "./types";
 
 export const JsonType: Settings = {
@@ -11,6 +12,7 @@ export const JsonType: Settings = {
       return code;
     }
   },
+  getSample: (): string => JSON_EXAMPLE,
   fromType: (code: string): Result => {
     if (code.length === 0) return [[], ""];
     if (code[0] !== "[") {

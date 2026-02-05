@@ -1,8 +1,7 @@
 import { CsvType } from "./csv";
 import { JsonType } from "./json";
 import { TsvType } from "./tsv";
-import { Settings } from "./types";
-
+import type { Settings } from "./types";
 
 export const detectFormat = (code: string): Settings => {
   // Max of O(n) with low constant factor to parse large files

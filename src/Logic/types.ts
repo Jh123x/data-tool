@@ -5,4 +5,5 @@ export interface Settings {
   Prettify: (code: string) => string;
   fromType: (code: string) => Result;
   toType: (data: Data) => string;
+  getSample: () => string;
 }
