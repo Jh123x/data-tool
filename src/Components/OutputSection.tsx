@@ -1,16 +1,15 @@
 import { Col, Typography } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
-import { lazy, useRef, useTransition, useState, useEffect } from "react";
+import { lazy, useRef, useTransition, useState, useEffect, Suspense } from "react";
 import type { Settings } from "../Logic/types";
 import useDebounce from "../Logic/useDebounce";
 import { spawnResultWorker } from "../Logic/worker";
 import type { ResultData } from "../Worker/types";
 import { Loading } from "./Loading";
 import type { Data } from "./types";
+import CopyFormatComponent from './CopyFormat';
+import CodeEditorComponent from './CodeEditor';
 
-// Lazy loading for bulky container
-const CodeEditorComponent = lazy(() => import("./CodeEditor"));
-const CopyFormatComponent = lazy(() => import("./CopyFormat"));
 
 interface SectionProps {
   irValue: Data;

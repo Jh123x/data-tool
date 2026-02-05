@@ -1,3 +1,223 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`App > should render correctly 1`] = `<DocumentFragment />`;
+exports[`App > should render correctly 1`] = `
+<DocumentFragment>
+  <h1
+    class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+  >
+    Data Converter
+  </h1>
+  <span
+    class="ant-typography ant-typography-secondary css-dev-only-do-not-override-3uaqrl css-var-root"
+  >
+    Convert data between different formats.
+  </span>
+  <h3
+    class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+  >
+    From Format
+  </h3>
+  <div
+    class="ant-row css-dev-only-do-not-override-3uaqrl css-var-root"
+  >
+    <div
+      class="ant-layout css-dev-only-do-not-override-3uaqrl css-var-root"
+      style="row-gap: 10px; gap: 10px;"
+    >
+      <button
+        class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
+        type="button"
+      >
+        <span>
+          json
+        </span>
+      </button>
+    </div>
+    <button
+      class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+      type="button"
+    >
+      <span>
+        Toggle Autodetect
+      </span>
+    </button>
+  </div>
+  <textarea
+    class="ant-input css-dev-only-do-not-override-3uaqrl ant-input-outlined css-var-root ant-input-css-var"
+    placeholder="Input Data"
+    rows="10"
+  />
+  <div
+    class="ant-layout css-dev-only-do-not-override-3uaqrl css-var-root"
+    style="row-gap: 10px; gap: 10px;"
+  >
+    <button
+      class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
+      type="button"
+    >
+      <span>
+        json
+      </span>
+    </button>
+  </div>
+  <h3
+    class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+  >
+    To Format
+  </h3>
+  <div
+    class="ant-row css-dev-only-do-not-override-3uaqrl css-var-root"
+    style="padding: 10px;"
+  >
+    <div
+      class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
+      style="padding: 5px;"
+    >
+      <div
+        class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
+      >
+        <div
+          class="ant-card-body"
+        >
+          <article
+            class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+          >
+            JSON
+          </article>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Copy JSON
+            </span>
+          </button>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Download JSON
+            </span>
+          </button>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Example JSON
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
+      style="padding: 5px;"
+    >
+      <div
+        class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
+      >
+        <div
+          class="ant-card-body"
+        >
+          <article
+            class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+          >
+            CSV
+          </article>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Copy CSV
+            </span>
+          </button>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Download CSV
+            </span>
+          </button>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Example CSV
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
+      style="padding: 5px;"
+    >
+      <div
+        class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
+      >
+        <div
+          class="ant-card-body"
+        >
+          <article
+            class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+          >
+            TSV
+          </article>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Copy TSV
+            </span>
+          </button>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Download TSV
+            </span>
+          </button>
+          <button
+            class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+            type="button"
+          >
+            <span>
+              Example TSV
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="ant-col css-dev-only-do-not-override-3uaqrl css-var-root"
+    style="position: relative;"
+  >
+    <button
+      class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+      hidden=""
+      style="position: absolute; top: 10px; right: 25px; display: none;"
+      type="button"
+    >
+      <span>
+        Copy
+      </span>
+    </button>
+    <pre
+      style="color: black; background: rgb(245, 242, 240); text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; max-height: 40vh; overflow-y: auto;"
+    >
+      <code
+        class="language-json"
+        style="white-space: pre; color: black; background: none; text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none;"
+      />
+    </pre>
+  </div>
+</DocumentFragment>
+`;
