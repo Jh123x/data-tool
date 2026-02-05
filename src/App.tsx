@@ -1,10 +1,8 @@
 import {
-  lazy,
   useCallback,
   useEffect,
   useMemo,
   useState,
-  Suspense,
 } from "react";
 import { LanguageDropdown } from "./Components/Dropdown";
 import { InputField } from "./Components/InputField";
@@ -20,7 +18,6 @@ import { debounce } from "lodash";
 import type { MessageData } from "./Worker/types";
 import { spawnParserWorker } from "./Logic/worker";
 import useDebounce from "./Logic/useDebounce";
-import { Loading } from "./Components/Loading";
 import { OutputSection } from "./Components/OutputSection";
 
 const App = () => {
