@@ -84,6 +84,8 @@ const App = () => {
 
   // Update Intermediate Representation.
   useEffect(() => {
+    // When this use effect is triggered, cancel the previous notification
+    notifyUser.cancel()
     if (debouncedValue.length === 0) {
       // If value is empty skip
       setIR([]);
