@@ -1,6 +1,6 @@
 import { Col, Typography } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
-import { lazy, useRef, useTransition, useState, useEffect, Suspense } from "react";
+import { useRef, useTransition, useState, useEffect } from "react";
 import type { Settings } from "../Logic/types";
 import useDebounce from "../Logic/useDebounce";
 import { spawnResultWorker } from "../Logic/worker";
