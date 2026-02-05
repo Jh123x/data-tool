@@ -1,15 +1,16 @@
 import { Col, Typography } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
-import { useRef, useTransition, useState, useEffect } from "react";
+import { lazy, Suspense, useRef, useTransition, useState, useEffect } from "react";
 import type { Settings } from "../Logic/types";
 import useDebounce from "../Logic/useDebounce";
 import { spawnResultWorker } from "../Logic/worker";
 import type { ResultData } from "../Worker/types";
 import { Loading } from "./Loading";
 import type { Data } from "./types";
-import CopyFormatComponent from './CopyFormat';
-import CodeEditorComponent from './CodeEditor';
 
+
+const CopyFormatComponent = lazy(() => import('./CopyFormat'));
+const CodeEditorComponent = lazy(() => import('./CodeEditor'));
 
 interface SectionProps {
   irValue: Data;
@@ -63,17 +64,20 @@ export const OutputSection = ({
       ) : (
         <>
           <Typography.Title level={3}>To Format</Typography.Title>
-          <CopyFormatComponent
-            notificationAPI={api}
-            irValue={irValue}
-            setValue={setValue}
-            setLang={setFromLang}
-          />
-          <CodeEditorComponent
-            toLang={toLang}
-            notificationAPI={api}
-            results={results}
-          />
+          <Suspense fallback={<Loading />}>
+            <CopyFormatComponent
+              notificationAPI={api}
+              irValue={irValue}
+              setValue={setValue}
+              setLang={setFromLang}
+            />
+            <CodeEditorComponent
+              toLang={toLang}
+              notificationAPI={api}
+              results={results}
+            />
+
+          </Suspense>
         </>
       )}
     </>
