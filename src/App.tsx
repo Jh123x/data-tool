@@ -36,7 +36,6 @@ const App = () => {
     defaultSettings.isAutoDetect,
   );
 
-  // Create debounced update
   const notifyUser = useMemo(
     () =>
       debounce((errMsg: string) => {
@@ -64,7 +63,6 @@ const App = () => {
     [setIR, notifyUser],
   );
 
-  // Save the user settings.
   useEffect(() => {
     const userSettings: UserSettings = {
       isAutoDetect: isAutoDetect,
@@ -74,7 +72,6 @@ const App = () => {
     SetSettings(userSettings);
   }, [fromLang, toLang, isAutoDetect]);
 
-  // Format detection.
   useEffect(() => {
     if (!isAutoDetect) return;
     if (debouncedValue.length === 0) return;
@@ -82,17 +79,14 @@ const App = () => {
     setFromLang(detectedSettings);
   }, [isAutoDetect, debouncedValue]);
 
-  // Update Intermediate Representation.
   useEffect(() => {
     // When this use effect is triggered, cancel the previous notification
     notifyUser.cancel()
     if (debouncedValue.length === 0) {
-      // If value is empty skip
       setIR([]);
       return;
     }
 
-    // Wait for worker to spawn
     const worker = spawnParserWorker();
     worker.onmessage = async (event) => {
       workerFn(event);
