@@ -1,5 +1,4 @@
 import { Typography } from "antd";
-
 const { Title, Text } = Typography;
 
 interface TitleProps {

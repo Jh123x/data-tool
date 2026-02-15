@@ -6,10 +6,7 @@ export interface UserSettings {
   toLang: string;
 }
 
-export const SerializeSettings = (settings: UserSettings): string => {
-  const rawSettings = JSON.stringify(settings);
-  return rawSettings;
-};
+export const SerializeSettings = (settings: UserSettings): string => JSON.stringify(settings)
 
 export const ParseSettings = (rawSettings: string): UserSettings => {
   const userSettings: UserSettings = {

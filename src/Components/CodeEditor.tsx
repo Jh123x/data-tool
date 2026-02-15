@@ -27,33 +27,31 @@ export const CodeEditor = ({
         position: "relative",
       }}
     >
-      <>
-        <Button
-          style={{
-            position: "absolute",
-            top: "10px",
-            right: "25px",
-            display: results.length === 0 ? "none" : "block",
-          }}
-          hidden={results.length == 0}
-          onClick={onCopy}
-        >
-          Copy
-        </Button>
-        <SyntaxHighlighter
-          language={toLang.language}
-          showInlineLineNumbers={true}
-          wrapLongLines={true}
-          showLineNumbers={true}
-          startingLineNumber={1}
-          customStyle={{
-            maxHeight: "100%",
-            overflowY: "auto",
-          }}
-        >
-          {results}
-        </SyntaxHighlighter>
-      </>
+      <Button
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "25px",
+          display: results.length === 0 ? "none" : "block",
+        }}
+        hidden={results.length == 0}
+        onClick={onCopy}
+      >
+        Copy
+      </Button>
+      <SyntaxHighlighter
+        language={toLang.language}
+        showInlineLineNumbers={true}
+        wrapLongLines={true}
+        showLineNumbers={true}
+        startingLineNumber={1}
+        customStyle={{
+          maxHeight: "100%",
+          overflowY: "auto",
+        }}
+      >
+        {results}
+      </SyntaxHighlighter>
     </Col>
   );
 };

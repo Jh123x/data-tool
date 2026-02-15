@@ -19,67 +19,65 @@ export const CopyFormat = ({
   setLang,
 }: CopyFormatProps) => {
   return (
-    <>
-      <Row style={{ padding: "10px" }}>
-        {ALL_DATA.map((currType: Settings, index: number) => {
-          const currLanguangeName = currType.language.toUpperCase();
-          return (
-            <Col
-              key={index}
-              span={24 / ALL_DATA.length}
-              style={{
-                padding: "5px",
-              }}
-            >
-              <Card>
-                <Typography>{currLanguangeName}</Typography>
-                <Button
-                  onClick={() => {
-                    if (irValue.length === 0)
-                      return notificationAPI.info({
-                        title: "Input some data to get started",
-                      });
-                    const result = currType.toType(irValue);
-                    navigator.clipboard.writeText(result);
-                    notificationAPI.success({
-                      title: `Copied as ${currLanguangeName}`,
+    <Row style={{ padding: "10px" }}>
+      {ALL_DATA.map((currType: Settings, index: number) => {
+        const currLanguangeName = currType.language.toUpperCase();
+        return (
+          <Col
+            key={index}
+            span={24 / ALL_DATA.length}
+            style={{
+              padding: "5px",
+            }}
+          >
+            <Card>
+              <Typography>{currLanguangeName}</Typography>
+              <Button
+                onClick={() => {
+                  if (irValue.length === 0)
+                    return notificationAPI.info({
+                      title: "Input some data to get started",
                     });
-                  }}
-                >
-                  Copy {currLanguangeName}
-                </Button>
-                <Button
-                  onClick={() => {
-                    const currResult = currType.toType(irValue);
-                    if (currResult.length === 0) {
-                      notificationAPI.info({
-                        title: "Input some data to get started",
-                      });
-                      return;
-                    }
-                    DownloadAsFile(
-                      currLanguangeName.toLowerCase(),
-                      "output",
-                      currResult,
-                    );
-                  }}
-                >
-                  Download {currLanguangeName}
-                </Button>
-                <Button
-                  onClick={() => {
-                    setLang(currType);
-                    setValue(currType.getSample());
-                  }}
-                >
-                  Example {currLanguangeName}
-                </Button>
-              </Card>
-            </Col>
-          );
-        })}
-      </Row>
-    </>
+                  const result = currType.toType(irValue);
+                  navigator.clipboard.writeText(result);
+                  notificationAPI.success({
+                    title: `Copied as ${currLanguangeName}`,
+                  });
+                }}
+              >
+                Copy {currLanguangeName}
+              </Button>
+              <Button
+                onClick={() => {
+                  const currResult = currType.toType(irValue);
+                  if (currResult.length === 0) {
+                    notificationAPI.info({
+                      title: "Input some data to get started",
+                    });
+                    return;
+                  }
+                  DownloadAsFile(
+                    currLanguangeName.toLowerCase(),
+                    "output",
+                    currResult,
+                  );
+                }}
+              >
+                Download {currLanguangeName}
+              </Button>
+              <Button
+                onClick={() => {
+                  setLang(currType);
+                  setValue(currType.getSample());
+                }}
+              >
+                Example {currLanguangeName}
+              </Button>
+            </Card>
+          </Col>
+        );
+      })}
+    </Row>
   );
 };
 
