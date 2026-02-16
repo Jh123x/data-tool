@@ -58,13 +58,11 @@ export const OutputSection = ({
     {
       key: 1,
       label: "Show formatted code",
-      children: <Suspense fallback={<Loading />}>
-        <CodeEditorComponent
-          toLang={toLang}
-          notificationAPI={api}
-          results={results}
-        />
-      </Suspense>,
+      children: <CodeEditorComponent
+        toLang={toLang}
+        notificationAPI={api}
+        results={results}
+      />,
     }
   ];
 
@@ -84,7 +82,10 @@ export const OutputSection = ({
               setValue={setValue}
               setLang={setFromLang}
             />
-            <Collapse items={items} />
+            <Collapse
+              items={items}
+              destroyOnHidden={true}
+            />
           </Suspense>
         </>
       )
