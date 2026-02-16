@@ -35,6 +35,14 @@ exports[`CopyFormat > should match snapshot 1`] = `
               type="button"
             >
               <span>
+                Copy Formatted
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
                 Download JSON
               </span>
             </button>
@@ -77,6 +85,14 @@ exports[`CopyFormat > should match snapshot 1`] = `
               type="button"
             >
               <span>
+                Copy Formatted
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
                 Download CSV
               </span>
             </button>
@@ -112,6 +128,14 @@ exports[`CopyFormat > should match snapshot 1`] = `
             >
               <span>
                 Copy TSV
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Copy Formatted
               </span>
             </button>
             <button

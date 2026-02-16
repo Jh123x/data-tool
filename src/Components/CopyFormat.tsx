@@ -50,6 +50,23 @@ export const CopyFormat = ({
               <Button
                 onClick={() => {
                   if (irValue.length === 0) {
+                    return notificationAPI.info({
+                      title: "Input some data to get started"
+                    })
+                  }
+
+                  const result = currType.toType(irValue);
+                  navigator.clipboard.writeText(currType.Prettify(result));
+                  notificationAPI.success({
+                    title: `Copied Formatted ${currLanguageName}`
+                  })
+                }}
+              >
+                Copy Formatted
+              </Button>
+              <Button
+                onClick={() => {
+                  if (irValue.length === 0) {
                     notificationAPI.info({
                       title: "Input valid data to get started"
                     })
