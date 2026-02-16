@@ -6,10 +6,7 @@ export interface UserSettings {
   toLang: string;
 }
 
-export const SerializeSettings = (settings: UserSettings): string => {
-  const rawSettings = JSON.stringify(settings);
-  return rawSettings;
-};
+export const SerializeSettings = (settings: UserSettings): string => JSON.stringify(settings)
 
 export const ParseSettings = (rawSettings: string): UserSettings => {
   const userSettings: UserSettings = {
@@ -21,14 +18,14 @@ export const ParseSettings = (rawSettings: string): UserSettings => {
   if (rawSettings.length === 0) return userSettings;
 
   try {
-    const settings = JSON.parse(rawSettings);
+    const settings: UserSettings = JSON.parse(rawSettings);
     if (!settings) return userSettings;
     if (!!settings?.isAutoDetect)
       userSettings.isAutoDetect = Boolean(settings.isAutoDetect);
     if (!!settings?.fromLang) userSettings.fromLang = settings.fromLang;
     if (!!settings?.toLang) userSettings.toLang = settings.toLang;
   } catch (e) {
-    console.error("unable to load user settings", String(e));
+    console.warn("unable to load user settings, fallback to default:", String(e));
   }
 
   return userSettings;

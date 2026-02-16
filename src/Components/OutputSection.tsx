@@ -33,16 +33,15 @@ export const OutputSection = ({
   const debouncedIR = useDebounce<Data>(irValue, 100);
 
   useEffect(() => {
-    if (!workerRef.current) {
-      workerRef.current = spawnResultWorker();
-    }
-
+    if (!workerRef.current) workerRef.current = spawnResultWorker();
     const worker = workerRef.current;
+
     worker.onmessage = async (event: MessageEvent<string>) => {
       startTransition(() => {
         setResult(toLang.Prettify(event.data));
       });
     };
+
     startTransition(() => {
       worker.postMessage({
         toType: toLang.language,
@@ -55,6 +54,7 @@ export const OutputSection = ({
       workerRef.current = null;
     };
   }, [debouncedIR, toLang]);
+
   return (
     <>
       {isPending ? (
