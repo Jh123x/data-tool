@@ -1,4 +1,4 @@
-import { Col, Typography } from "antd";
+import { Col, Collapse, CollapseProps, Typography } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import { lazy, Suspense, useRef, useTransition, useState, useEffect } from "react";
 import type { Settings } from "../Logic/types";
@@ -54,6 +54,19 @@ export const OutputSection = ({
       workerRef.current = null;
     };
   }, [debouncedIR, toLang]);
+  const items: CollapseProps['items'] = [
+    {
+      key: 1,
+      label: "Show formatted code",
+      children: <Suspense fallback={<Loading />}>
+        <CodeEditorComponent
+          toLang={toLang}
+          notificationAPI={api}
+          results={results}
+        />
+      </Suspense>,
+    }
+  ];
 
   return (
     <>
@@ -71,15 +84,11 @@ export const OutputSection = ({
               setValue={setValue}
               setLang={setFromLang}
             />
-            <CodeEditorComponent
-              toLang={toLang}
-              notificationAPI={api}
-              results={results}
-            />
-
+            <Collapse items={items} />
           </Suspense>
         </>
-      )}
+      )
+      }
     </>
   );
 };
