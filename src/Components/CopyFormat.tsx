@@ -21,7 +21,7 @@ export const CopyFormat = ({
   return (
     <Row style={{ padding: "10px" }}>
       {ALL_DATA.map((currType: Settings, index: number) => {
-        const currLanguangeName = currType.language.toUpperCase();
+        const currLanguageName = currType.language.toUpperCase();
         return (
           <Col
             key={index}
@@ -31,7 +31,7 @@ export const CopyFormat = ({
             }}
           >
             <Card>
-              <Typography>{currLanguangeName}</Typography>
+              <Typography>{currLanguageName}</Typography>
               <Button
                 onClick={() => {
                   if (irValue.length === 0)
@@ -41,11 +41,11 @@ export const CopyFormat = ({
                   const result = currType.toType(irValue);
                   navigator.clipboard.writeText(result);
                   notificationAPI.success({
-                    title: `Copied as ${currLanguangeName}`,
+                    title: `Copied as ${currLanguageName}`,
                   });
                 }}
               >
-                Copy {currLanguangeName}
+                Copy {currLanguageName}
               </Button>
               <Button
                 onClick={() => {
@@ -57,13 +57,13 @@ export const CopyFormat = ({
                     return;
                   }
                   DownloadAsFile(
-                    currLanguangeName.toLowerCase(),
+                    currLanguageName.toLowerCase(),
                     "output",
                     currResult,
                   );
                 }}
               >
-                Download {currLanguangeName}
+                Download {currLanguageName}
               </Button>
               <Button
                 onClick={() => {
@@ -71,7 +71,7 @@ export const CopyFormat = ({
                   setValue(currType.getSample());
                 }}
               >
-                Example {currLanguangeName}
+                Example {currLanguageName}
               </Button>
             </Card>
           </Col>
