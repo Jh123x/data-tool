@@ -34,7 +34,6 @@ export const CodeEditor = ({
           right: "25px",
           display: results.length === 0 ? "none" : "block",
         }}
-        hidden={results.length == 0}
         onClick={onCopy}
       >
         Copy
