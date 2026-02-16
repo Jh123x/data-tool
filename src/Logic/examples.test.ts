@@ -34,7 +34,7 @@ describe("json example", () => {
   test("should be parsed as JSON correctly", () => {
     const [ir, errMsg] = JsonType.fromType(JSON_EXAMPLE);
     expect(errMsg).toBe("");
-    expect(ir).not.toBe([]);
+    expect(ir.length).toBeGreaterThan(0);
   })
 })
 
