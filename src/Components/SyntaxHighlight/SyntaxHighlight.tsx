@@ -11,10 +11,11 @@ interface SyntaxHighlightProps {
 
 const SyntaxHighlight = ({ results, language }: SyntaxHighlightProps) => {
   const textRef = useRef(null);
-
   return <>
-    <Col ref={textRef} style={{ zIndex: 0, }}>{results}</Col>
-    <HighlightSubElemComponent ref={textRef} language={language} results={results} />
+    <HighlightSubElemComponent textRef={textRef} language={language} results={results} />
+    <Col ref={textRef} style={{ zIndex: 0 }}>
+      {results}
+    </Col>
   </>
 }
 
