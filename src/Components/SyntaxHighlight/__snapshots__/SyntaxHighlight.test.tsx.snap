@@ -1,3 +1,13 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`SyntaxHighlight > should match snapshot 1`] = `<DocumentFragment />`;
+exports[`SyntaxHighlight > should match snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="ant-col css-dev-only-do-not-override-1iftmj9 css-var-root shj-lang-json shj-multiline"
+    data-lang="json"
+    style="z-index: 0;"
+  >
+    [{"test":"test2","test2":"test3"}]
+  </div>
+</DocumentFragment>
+`;

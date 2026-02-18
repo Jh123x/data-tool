@@ -7,15 +7,6 @@ exports[`CodeEditor > should match snapshot 1`] = `
       class="ant-col css-dev-only-do-not-override-1iftmj9 css-var-root"
       style="position: relative;"
     >
-      <button
-        class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-        style="position: absolute; top: 10px; right: 25px; display: block; z-index: 1;"
-        type="button"
-      >
-        <span>
-          Copy
-        </span>
-      </button>
       <div
         class="ant-flex css-dev-only-do-not-override-1iftmj9 css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
         dir="column"
@@ -49,7 +40,7 @@ exports[`CodeEditor > should match snapshot 1`] = `
         <article
           class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
         >
-          Adding Syntax Highlight
+          Adding Syntax Highlighting
         </article>
       </div>
     </div>

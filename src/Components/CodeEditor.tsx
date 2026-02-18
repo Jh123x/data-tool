@@ -30,6 +30,7 @@ export const CodeEditor = ({
         position: "relative",
       }}
     >
+      <Suspense fallback={<Loading message={"Adding Syntax Highlighting"} />}>
       <Button
         style={{
           position: "absolute",
@@ -42,7 +43,6 @@ export const CodeEditor = ({
       >
         Copy
       </Button>
-      <Suspense fallback={<Loading message={"Adding Syntax Highlight"} />}>
         <SyntaxHighlighter language={toLang.language} results={results} />
       </Suspense>
     </Col >
