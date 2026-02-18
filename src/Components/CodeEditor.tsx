@@ -31,18 +31,18 @@ export const CodeEditor = ({
       }}
     >
       <Suspense fallback={<Loading message={"Adding Syntax Highlighting"} />}>
-      <Button
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "25px",
-          display: results.length === 0 ? "none" : "block",
-          zIndex: 1,
-        }}
-        onClick={onCopy}
-      >
-        Copy
-      </Button>
+        <Button
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "25px",
+            display: results.length === 0 ? "none" : "block",
+            zIndex: 1,
+          }}
+          onClick={onCopy}
+        >
+          Copy
+        </Button>
         <SyntaxHighlighter language={toLang.language} results={results} />
       </Suspense>
     </Col >
