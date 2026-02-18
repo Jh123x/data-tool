@@ -4,15 +4,19 @@ import { convertToShjLang } from "./converter";
 
 describe("Converter", () => {
   test(`json`, () => {
-    expect(convertToShjLang(SupportedLanguage.json)).toBe(`json`)
+    expect(convertToShjLang(SupportedLanguage.json)).toBe(`json`);
   })
 
   test(`csv`, () => {
-    expect(convertToShjLang(SupportedLanguage.csv)).toBe(`csv`)
+    expect(convertToShjLang(SupportedLanguage.csv)).toBe(`csv`);
   })
 
   test(`tsv`, () => {
-    expect(convertToShjLang(SupportedLanguage.tsv)).toBe(`csv`)
+    expect(convertToShjLang(SupportedLanguage.tsv)).toBe(`plain`);
+  })
+
+  test(`unknown`, () => {
+    expect(convertToShjLang("unknown" as SupportedLanguage)).toBe(`plain`);
   })
 })
 
