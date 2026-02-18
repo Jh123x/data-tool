@@ -3,12 +3,12 @@
 exports[`Page Title > should match snapshot 1`] = `
 <DocumentFragment>
   <h1
-    class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+    class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
   >
     Test Title
   </h1>
   <span
-    class="ant-typography ant-typography-secondary css-dev-only-do-not-override-3uaqrl css-var-root"
+    class="ant-typography ant-typography-secondary css-dev-only-do-not-override-1iftmj9 css-var-root"
   >
     Test sub text
   </span>

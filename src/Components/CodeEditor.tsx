@@ -1,7 +1,10 @@
 import { Button, Col } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import type { Settings } from "../Logic/types";
+import { Suspense, lazy } from "react";
+import { Loading } from "./Loading";
+
+const SyntaxHighlighter = lazy(() => import('./SyntaxHighlight/SyntaxHighlight'))
 
 interface EditorProp {
   results: string;
@@ -27,31 +30,22 @@ export const CodeEditor = ({
         position: "relative",
       }}
     >
-      <Button
-        style={{
-          position: "absolute",
-          top: "10px",
-          right: "25px",
-          display: results.length === 0 ? "none" : "block",
-        }}
-        onClick={onCopy}
-      >
-        Copy
-      </Button>
-      <SyntaxHighlighter
-        language={toLang.language}
-        showInlineLineNumbers={true}
-        wrapLongLines={true}
-        showLineNumbers={true}
-        startingLineNumber={1}
-        customStyle={{
-          maxHeight: "100%",
-          overflowY: "auto",
-        }}
-      >
-        {results}
-      </SyntaxHighlighter>
-    </Col>
+      <Suspense fallback={<Loading message={"Adding Syntax Highlighting"} />}>
+        <Button
+          style={{
+            position: "absolute",
+            top: "10px",
+            right: "25px",
+            display: results.length === 0 ? "none" : "block",
+            zIndex: 1,
+          }}
+          onClick={onCopy}
+        >
+          Copy
+        </Button>
+        <SyntaxHighlighter language={toLang.language} results={results} />
+      </Suspense>
+    </Col >
   );
 };
 

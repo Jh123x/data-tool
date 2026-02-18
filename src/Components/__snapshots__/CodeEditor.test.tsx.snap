@@ -4,40 +4,45 @@ exports[`CodeEditor > should match snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="ant-col css-dev-only-do-not-override-3uaqrl css-var-root"
+      class="ant-col css-dev-only-do-not-override-1iftmj9 css-var-root"
       style="position: relative;"
     >
-      <button
-        class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
-        style="position: absolute; top: 10px; right: 25px; display: block;"
-        type="button"
+      <div
+        class="ant-flex css-dev-only-do-not-override-1iftmj9 css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
+        dir="column"
+        style="display: inline-flex;"
       >
-        <span>
-          Copy
-        </span>
-      </button>
-      <pre
-        style="color: black; background: rgb(245, 242, 240); text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; white-space: pre; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none; padding: 1em; margin: 0.5em 0px; overflow: auto; max-height: 100%; overflow-y: auto;"
-      >
-        <code
-          class="language-json"
-          style="white-space: pre; color: black; background: none; text-shadow: 0 1px white; font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace; font-size: 1em; text-align: left; word-spacing: normal; word-break: normal; word-wrap: normal; line-height: 1.5; tab-size: 4; hyphens: none;"
+        <div
+          aria-busy="true"
+          aria-live="polite"
+          class="ant-spin ant-spin-lg ant-spin-spinning ant-spin-section css-dev-only-do-not-override-1iftmj9 css-var-root"
         >
           <span
-            style="display: flex;"
+            aria-label="loading"
+            class="anticon anticon-loading anticon-spin ant-spin-dot"
+            role="img"
           >
-            <span
-              class="linenumber react-syntax-highlighter-line-number"
-              style="display: inline-block; min-width: 1.25em; padding-right: 1em; text-align: right; user-select: none; color: slategray;"
+            <svg
+              aria-hidden="true"
+              data-icon="loading"
+              fill="currentColor"
+              focusable="false"
+              height="1em"
+              viewBox="0 0 1024 1024"
+              width="1em"
             >
-              1
-            </span>
-            <span>
-              example text
-            </span>
+              <path
+                d="M988 548c-19.9 0-36-16.1-36-36 0-59.4-11.6-117-34.6-171.3a440.45 440.45 0 00-94.3-139.9 437.71 437.71 0 00-139.9-94.3C629 83.6 571.4 72 512 72c-19.9 0-36-16.1-36-36s16.1-36 36-36c69.1 0 136.2 13.5 199.3 40.3C772.3 66 827 103 874 150c47 47 83.9 101.8 109.7 162.7 26.7 63.1 40.2 130.2 40.2 199.3.1 19.9-16 36-35.9 36z"
+              />
+            </svg>
           </span>
-        </code>
-      </pre>
+        </div>
+        <article
+          class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+        >
+          Adding Syntax Highlighting
+        </article>
+      </div>
     </div>
   </div>
 </DocumentFragment>

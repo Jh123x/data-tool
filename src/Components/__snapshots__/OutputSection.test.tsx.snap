@@ -4,18 +4,19 @@ exports[`Loading > should match snapshot 1`] = `
 <DocumentFragment>
   <div>
     <h3
-      class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+      class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
     >
       To Format
     </h3>
     <div
-      class="ant-flex css-dev-only-do-not-override-3uaqrl css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
+      class="ant-flex css-dev-only-do-not-override-1iftmj9 css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
       dir="column"
+      style="display: inline-flex;"
     >
       <div
         aria-busy="true"
         aria-live="polite"
-        class="ant-spin ant-spin-lg ant-spin-spinning css-dev-only-do-not-override-3uaqrl css-var-root"
+        class="ant-spin ant-spin-lg ant-spin-spinning ant-spin-section css-dev-only-do-not-override-1iftmj9 css-var-root"
       >
         <span
           aria-label="loading"
@@ -38,7 +39,7 @@ exports[`Loading > should match snapshot 1`] = `
         </span>
       </div>
       <article
-        class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+        class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
       >
         Loading...
       </article>

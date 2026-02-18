@@ -20,11 +20,11 @@ export const CopyFormat = ({
 }: CopyFormatProps) => {
   return (
     <Row style={{ padding: "10px" }}>
-      {ALL_DATA.map((currType: Settings, index: number) => {
+      {ALL_DATA.map((currType: Settings) => {
         const currLanguageName = currType.language.toUpperCase();
         return (
           <Col
-            key={index}
+            key={currLanguageName}
             span={24 / ALL_DATA.length}
             style={{
               padding: "5px",
@@ -45,10 +45,33 @@ export const CopyFormat = ({
                   });
                 }}
               >
-                Copy {currLanguageName}
+                Copy
               </Button>
               <Button
                 onClick={() => {
+                  if (irValue.length === 0) {
+                    return notificationAPI.info({
+                      title: "Input some data to get started"
+                    })
+                  }
+
+                  const result = currType.toType(irValue);
+                  navigator.clipboard.writeText(currType.Prettify(result));
+                  notificationAPI.success({
+                    title: `Copied Formatted ${currLanguageName}`
+                  })
+                }}
+              >
+                Copy Formatted
+              </Button>
+              <Button
+                onClick={() => {
+                  if (irValue.length === 0) {
+                    notificationAPI.info({
+                      title: "Input valid data to get started"
+                    })
+                    return
+                  }
                   const currResult = currType.toType(irValue);
                   if (currResult.length === 0) {
                     notificationAPI.info({
@@ -63,7 +86,7 @@ export const CopyFormat = ({
                   );
                 }}
               >
-                Download {currLanguageName}
+                Download
               </Button>
               <Button
                 onClick={() => {
@@ -71,7 +94,7 @@ export const CopyFormat = ({
                   setValue(currType.getSample());
                 }}
               >
-                Example {currLanguageName}
+                Show Example
               </Button>
             </Card>
           </Col>

@@ -4,130 +4,154 @@ exports[`CopyFormat > should match snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="ant-row css-dev-only-do-not-override-3uaqrl css-var-root"
+      class="ant-row css-dev-only-do-not-override-1iftmj9 css-var-root"
       style="padding: 10px;"
     >
       <div
-        class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
+        class="ant-col ant-col-8 css-dev-only-do-not-override-1iftmj9 css-var-root"
         style="padding: 5px;"
       >
         <div
-          class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-1iftmj9 css-var-root"
         >
           <div
             class="ant-card-body"
           >
             <article
-              class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+              class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
             >
               JSON
             </article>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Copy JSON
+                Copy
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Download JSON
+                Copy Formatted
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Example JSON
+                Download
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Show Example
               </span>
             </button>
           </div>
         </div>
       </div>
       <div
-        class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
+        class="ant-col ant-col-8 css-dev-only-do-not-override-1iftmj9 css-var-root"
         style="padding: 5px;"
       >
         <div
-          class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-1iftmj9 css-var-root"
         >
           <div
             class="ant-card-body"
           >
             <article
-              class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+              class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
             >
               CSV
             </article>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Copy CSV
+                Copy
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Download CSV
+                Copy Formatted
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Example CSV
+                Download
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Show Example
               </span>
             </button>
           </div>
         </div>
       </div>
       <div
-        class="ant-col ant-col-8 css-dev-only-do-not-override-3uaqrl css-var-root"
+        class="ant-col ant-col-8 css-dev-only-do-not-override-1iftmj9 css-var-root"
         style="padding: 5px;"
       >
         <div
-          class="ant-card ant-card-bordered css-dev-only-do-not-override-3uaqrl css-var-root"
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-1iftmj9 css-var-root"
         >
           <div
             class="ant-card-body"
           >
             <article
-              class="ant-typography css-dev-only-do-not-override-3uaqrl css-var-root"
+              class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
             >
               TSV
             </article>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Copy TSV
+                Copy
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Download TSV
+                Copy Formatted
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-3uaqrl css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
-                Example TSV
+                Download
+              </span>
+            </button>
+            <button
+              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              type="button"
+            >
+              <span>
+                Show Example
               </span>
             </button>
           </div>
