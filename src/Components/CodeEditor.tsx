@@ -1,10 +1,10 @@
 import { Button, Col } from "antd";
 import type { NotificationInstance } from "antd/es/notification/interface";
 import type { Settings } from "../Logic/types";
-import { highlightAll } from '@speed-highlight/core';
-import { useEffect, Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { Loading } from "./Loading";
 
+const SyntaxHighlighter = lazy(() => import('./SyntaxHighlight/SyntaxHighlight'))
 
 interface EditorProp {
   results: string;
@@ -24,10 +24,6 @@ export const CodeEditor = ({
     navigator.clipboard.writeText(results);
   };
 
-  useEffect(() => {
-    highlightAll();
-  }, [results])
-
   return (
     <Col
       style={{
@@ -46,13 +42,8 @@ export const CodeEditor = ({
       >
         Copy
       </Button>
-      <Suspense fallback={<Loading />}>
-        <Col
-          className={`shj-multiline shj-lang-${toLang.language.toLowerCase()}`}
-          style={{ zIndex: 0 }}
-        >
-          {results}
-        </Col>
+      <Suspense fallback={<Loading message={"Adding Syntax Highlight"} />}>
+        <SyntaxHighlighter language={toLang.language} results={results} />
       </Suspense>
     </Col >
   );

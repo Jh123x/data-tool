@@ -60,7 +60,6 @@ export const OutputSection = ({
       label: "Show formatted code",
       children: <CodeEditorComponent
         toLang={toLang}
-        notificationAPI={api}
         results={results}
       />,
     }

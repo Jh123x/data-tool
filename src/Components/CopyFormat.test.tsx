@@ -8,7 +8,7 @@ const Wrapper = () => {
   return (
     <div>
       {contextHolder}
-      <CopyFormat notificationAPI={api} irValue={[]} setValue={() => { }} />
+      <CopyFormat notificationAPI={api} irValue={[]} setValue={() => { }} setLang={() => { }} />
     </div>
   );
 };

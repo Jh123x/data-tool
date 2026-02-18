@@ -45,7 +45,7 @@ export const CopyFormat = ({
                   });
                 }}
               >
-                Copy {currLanguageName}
+                Copy
               </Button>
               <Button
                 onClick={() => {
@@ -86,7 +86,7 @@ export const CopyFormat = ({
                   );
                 }}
               >
-                Download {currLanguageName}
+                Download
               </Button>
               <Button
                 onClick={() => {
@@ -94,7 +94,7 @@ export const CopyFormat = ({
                   setValue(currType.getSample());
                 }}
               >
-                Example {currLanguageName}
+                Show Example
               </Button>
             </Card>
           </Col>
