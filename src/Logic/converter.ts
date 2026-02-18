@@ -1,4 +1,4 @@
-import { ShjLanguage } from '@speed-highlight/core/index';
+import { ShjLanguage } from '@speed-highlight/core';
 import { SupportedLanguage } from '../Components/types';
 
 export const convertToShjLang = (currLang: SupportedLanguage): ShjLanguage => {

@@ -68,6 +68,7 @@ exports[`App > should render correctly 1`] = `
   <div
     class="ant-flex css-dev-only-do-not-override-1iftmj9 css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
     dir="column"
+    style="display: inline-flex;"
   >
     <div
       aria-busy="true"
