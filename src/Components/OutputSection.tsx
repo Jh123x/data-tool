@@ -54,6 +54,7 @@ export const OutputSection = ({
       workerRef.current = null;
     };
   }, [debouncedIR, toLang]);
+
   const items: CollapseProps['items'] = [
     {
       key: 1,
@@ -61,6 +62,7 @@ export const OutputSection = ({
       children: <CodeEditorComponent
         toLang={toLang}
         results={results}
+        notificationAPI={api}
       />,
     }
   ];

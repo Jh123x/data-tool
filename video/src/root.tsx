@@ -1,5 +1,6 @@
 import React from "react";
 import { Composition } from "remotion";
+import { FRAME_RATE, SECOND } from "./scenes/consts";
 import { ProductScene } from "./scenes/ProductScene";
 
 export const RemotionRoot: React.FC = () => {
@@ -7,10 +8,10 @@ export const RemotionRoot: React.FC = () => {
     <Composition
       id="ProductVideo"
       component={ProductScene}
-      durationInFrames={30 * 20}
-      fps={30}
+      durationInFrames={SECOND * 30}
+      fps={FRAME_RATE}
       width={1500}
-      height={900}
+      height={800}
     />
   );
 };

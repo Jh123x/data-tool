@@ -6,6 +6,8 @@
   "dependencies": {
     "@ant-design/icons": "^6.1.0",
     "@remotion/bundler": "^4.0.425",
+    "@remotion/fonts": "^4.0.425",
+    "@remotion/google-fonts": "^4.0.425",
     "@remotion/renderer": "^4.0.425",
     "@speed-highlight/core": "^1.2.14",
     "@vitejs/plugin-react": "^5.1.2",
