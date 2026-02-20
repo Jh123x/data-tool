@@ -9,6 +9,7 @@ A convenient data tool to help with format conversions.
 - Copy and Download Results
 - View Results (Note: For large results, the webpage may lag)
 
+
 ## Supported Types
 
 - JSON
@@ -17,5 +18,5 @@ A convenient data tool to help with format conversions.
 
 ## Future Roadmap
 
-- [ ] Sharable links (For reasonable data size)
+- [ ] Sharable links, not shared in the server. (For reasonable data size)
 
