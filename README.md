@@ -18,5 +18,6 @@ A convenient data tool to help with format conversions.
 
 ## Future Roadmap
 
-- [ ] Sharable links, not shared in the server. (For reasonable data size)
+- [ ] Auto product video generation. 
+- [ ] Sharable links, by hash.
 
