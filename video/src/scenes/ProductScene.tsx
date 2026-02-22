@@ -1,5 +1,5 @@
 import { type FC, useEffect, useState } from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
+import { AbsoluteFill, interpolate, Sequence, useCurrentFrame } from "remotion";
 import { ConfigProvider, theme, App, Col, Typography, Row, Button } from "antd";
 import useNotification from "antd/es/notification/useNotification";
 import { PageTitle } from "../../../src/Components/PageTitle";
@@ -11,7 +11,8 @@ import { OutputSection } from "../../../src/Components/OutputSection";
 import { Data } from "../../../src/Components/types";
 import { SECOND } from "./consts";
 import { Subtitles } from "../components/SubTitles";
-import { Cursor } from "../components/cursor";
+import { Cursor } from "../components/Cursor";
+import { Animated, Move } from "remotion-animated";
 
 const finalInputValue = `[{"test":"test2"},{"test":"test3"},{"test2":"test4"}]`
 const subTitles = [
@@ -19,8 +20,10 @@ const subTitles = [
   { start: SECOND * 2, end: SECOND * 4, text: "It renders datasets between different forms instantly." },
   { start: SECOND * 4, end: SECOND * 6, text: "Built with Ant Design and React." },
   { start: SECOND * 6, end: SECOND * 10, text: "1st Paste the input." },
-  { start: SECOND * 10, end: SECOND * 16, text: "Click on the outputs which you want to get." },
-  { start: SECOND * 16, end: SECOND * 18, text: "You will see a notification based on what you click" },
+  { start: SECOND * 10, end: SECOND * 12, text: "Click on the outputs which you want to get." },
+  { start: SECOND * 12, end: SECOND * 18, text: "We support switching between JSON, CSV & TSV." },
+  { start: SECOND * 18, end: SECOND * 22, text: "You will see a notification based on what you click." },
+  { start: SECOND * 22, end: SECOND * 25, text: "Visit us at https://data.jh123x.com" },
 ]
 
 export const ProductScene: FC = () => {
@@ -34,25 +37,22 @@ export const ProductScene: FC = () => {
   const [api, _] = useNotification();
   const [value, setValue] = useState<string>("");
   const [irValue, setIRValue] = useState<Data>([]);
+  const [click, setClick] = useState<boolean>(false);
 
   useEffect(() => {
-    if (frame >= SECOND * 8) setValue(finalInputValue);
-    if (frame >= SECOND * 16) api.info({ "title": "Copied as CSV" })
+    if (frame >= SECOND * 8) { setValue(finalInputValue) } else { setValue("") };
+    setClick(
+      (frame >= 7.5 * SECOND && frame <= SECOND * 8) ||
+      (frame >= 12.5 * SECOND && frame <= SECOND * 13) ||
+      (frame >= 13.5 * SECOND && frame <= SECOND * 14) ||
+      (frame >= 14.5 * SECOND && frame <= SECOND * 15)
+    )
   }, [frame])
 
   useEffect(() => {
-    const [data, errMsg] = CsvType.fromType(value);
-    if (errMsg !== "") {
-      api.error({
-        title: errMsg,
-      })
-      return;
-    }
+    const [data, _] = CsvType.fromType(value);
     setIRValue(data);
   }, [value])
-
-  const x = interpolate(frame, [0, 60], [100, 400]);
-  const y = interpolate(frame, [0, 60], [100, 300]);
 
   return (
     <AbsoluteFill
@@ -105,11 +105,22 @@ export const ProductScene: FC = () => {
                 setFromLang={() => { }}
               />
             </>
+            <Subtitles items={subTitles} />
           </Col>
         </App>
+        <Sequence from={SECOND * 2} durationInFrames={SECOND * 20}>
+          <Animated
+            animations={[
+              Move({ x: -650, y: -200, start: SECOND * 5, duration: SECOND * 0.5 }),
+              Move({ x: 0, y: 370, start: SECOND * 10, duration: SECOND * 0.5 }),
+              Move({ x: 450, y: 0, start: SECOND * 11, duration: SECOND * 0.5 }),
+              Move({ x: 500, y: 0, start: SECOND * 12, duration: SECOND * 0.5 }),
+            ]}
+          >
+            <Cursor x={750} y={450} isClick={click} />
+          </Animated>
+        </Sequence>
       </ConfigProvider>
-      <Subtitles items={subTitles} />
-      <Cursor x={x} y={y} />
     </AbsoluteFill>
   );
 };

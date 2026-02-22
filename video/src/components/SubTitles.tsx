@@ -20,7 +20,7 @@ export const Subtitles: FC<{
     <div
       style={{
         position: "absolute",
-        bottom: 80,
+        bottom: 70,
         width: "100%",
         textAlign: "center",
         color: "black",

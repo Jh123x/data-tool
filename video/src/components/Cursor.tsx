@@ -1,5 +1,10 @@
-export const Cursor = ({ x, y }: { x: number; y: number }) => (
-  <div
+import CursorImage from "../icons/cursor.svg";
+import CursorClick from "../icons/cursor-click.svg";
+
+
+export const Cursor = ({ x, y, isClick }: { x: number; y: number; isClick: boolean }) => {
+  return <img
+    src={isClick ? CursorClick : CursorImage}
     style={{
       position: "absolute",
       left: x,
@@ -12,4 +17,4 @@ export const Cursor = ({ x, y }: { x: number; y: number }) => (
       borderColor: "black",
     }}
   />
-);
+};
