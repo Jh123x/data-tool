@@ -15,7 +15,7 @@ await renderMedia({
   composition,
   serveUrl: bundleLocation,
   codec: "h264",
-  outputLocation: "video/out/product.mp4",
+  outputLocation: "docs/main.mp4",
 });
 
 console.log("✅ Video rendered");
