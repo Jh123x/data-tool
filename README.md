@@ -9,6 +9,7 @@ A convenient data tool to help with format conversions.
 - Copy and Download Results
 - View Results (Note: For large results, the webpage may lag)
 
+![Video](./docs/main.mp4 "Main product video")
 
 ## Supported Types
 
