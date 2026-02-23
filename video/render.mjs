@@ -14,8 +14,8 @@ const composition = await selectComposition({
 await renderMedia({
   composition,
   serveUrl: bundleLocation,
-  codec: "h264",
-  outputLocation: "docs/main.mp4",
+  codec: "gif",
+  outputLocation: "docs/main.gif",
 });
 
 console.log("✅ Video rendered");
