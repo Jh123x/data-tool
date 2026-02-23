@@ -111,7 +111,7 @@ export const ProductScene: FC = () => {
         <Sequence from={SECOND * 2} durationInFrames={SECOND * 20}>
           <Animated
             animations={[
-              Move({ x: -650, y: -200, start: SECOND * 5, duration: SECOND * 0.5 }),
+              Move({ x: -650, y: -170, start: SECOND * 5, duration: SECOND * 0.5 }),
               Move({ x: 0, y: 370, start: SECOND * 10, duration: SECOND * 0.5 }),
               Move({ x: 450, y: 0, start: SECOND * 11, duration: SECOND * 0.5 }),
               Move({ x: 500, y: 0, start: SECOND * 12, duration: SECOND * 0.5 }),
