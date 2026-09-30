@@ -4,7 +4,7 @@ exports[`Dropdown > should match snapshot 1`] = `
 <DocumentFragment>
   <div>
     <textarea
-      class="ant-input css-dev-only-do-not-override-1iftmj9 ant-input-outlined css-var-root ant-input-css-var"
+      class="ant-input css-dev-only-do-not-override-oc1rc0 ant-input-outlined css-var-root ant-input-css-var"
       rows="10"
     />
   </div>

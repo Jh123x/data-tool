@@ -3,11 +3,44 @@
 exports[`SyntaxHighlight > should match snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="ant-col css-dev-only-do-not-override-1iftmj9 css-var-root shj-lang-json shj-multiline"
+    class="ant-col css-dev-only-do-not-override-oc1rc0 css-var-root shj-lang-json shj-multiline"
     data-lang="json"
     style="z-index: 0;"
   >
-    [{"test":"test2","test2":"test3"}]
+    <div>
+      <div
+        class="shj-numbers"
+      >
+        <div />
+      </div>
+      <div>
+        [{
+        <span
+          class="shj-syn-var"
+        >
+          "test"
+        </span>
+        :
+        <span
+          class="shj-syn-str"
+        >
+          "test2"
+        </span>
+        ,
+        <span
+          class="shj-syn-var"
+        >
+          "test2"
+        </span>
+        :
+        <span
+          class="shj-syn-str"
+        >
+          "test3"
+        </span>
+        }]
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
