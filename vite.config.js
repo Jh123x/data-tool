@@ -10,6 +10,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: ['./src/vitest-setup.ts', '@vitest/web-worker'],
-    pool: "forks"
+    pool: "forks",
   },
 });
