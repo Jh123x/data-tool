@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { vi, beforeEach } from "vitest";
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -34,6 +34,11 @@ Object.defineProperty(window, 'localStorage', {
 Object.defineProperty(globalThis, 'localStorage', {
   value: localStorageMock,
   writable: true,
+});
+
+beforeEach(() => {
+  localStorage.clear();
+  vi.clearAllMocks();
 });
 
 class stubResizeObserver {
