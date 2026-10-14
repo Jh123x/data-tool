@@ -1,4 +1,4 @@
-import { vi } from "vitest";
+import { vi, beforeEach } from "vitest";
 
 Object.defineProperty(window, "matchMedia", {
   writable: true,
@@ -6,6 +6,39 @@ Object.defineProperty(window, "matchMedia", {
     matches: false,
     media: query,
   })),
+});
+
+const localStorageMock = (() => {
+  let store: Record<string, string> = {};
+  return {
+    getItem: vi.fn((key: string) => store[key] ?? null),
+    setItem: vi.fn((key: string, value: string) => {
+      store[key] = value.toString();
+    }),
+    removeItem: vi.fn((key: string) => {
+      delete store[key];
+    }),
+    clear: vi.fn(() => {
+      store = {};
+    }),
+    length: 0,
+    key: vi.fn((index: number) => Object.keys(store)[index] ?? null),
+  };
+})();
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock,
+  writable: true,
+});
+
+Object.defineProperty(globalThis, 'localStorage', {
+  value: localStorageMock,
+  writable: true,
+});
+
+beforeEach(() => {
+  localStorage.clear();
+  vi.clearAllMocks();
 });
 
 class stubResizeObserver {
