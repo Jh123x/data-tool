@@ -17,9 +17,7 @@ const SyntaxHighlight = ({ results, language }: SyntaxHighlightProps) => {
 
   useEffect(() => {
     setPromise(async () => {
-      if (!textRef.current) {
-        return;
-      }
+      if (!textRef.current) return;
 
       setIsPending(true);
       if (!results) {
