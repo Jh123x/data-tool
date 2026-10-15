@@ -3,29 +3,29 @@
 exports[`App > should render correctly 1`] = `
 <DocumentFragment>
   <h1
-    class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+    class="ant-typography css-dev-only-do-not-override-oc1rc0 css-var-root"
   >
     Data Converter
   </h1>
   <span
-    class="ant-typography ant-typography-secondary css-dev-only-do-not-override-1iftmj9 css-var-root"
+    class="ant-typography ant-typography-secondary css-dev-only-do-not-override-oc1rc0 css-var-root"
   >
     Convert data between different formats.
   </span>
   <h3
-    class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+    class="ant-typography css-dev-only-do-not-override-oc1rc0 css-var-root"
   >
     From Format
   </h3>
   <div
-    class="ant-row css-dev-only-do-not-override-1iftmj9 css-var-root"
+    class="ant-row css-dev-only-do-not-override-oc1rc0 css-var-root"
   >
     <div
-      class="ant-layout css-dev-only-do-not-override-1iftmj9 css-var-root"
+      class="ant-layout css-dev-only-do-not-override-oc1rc0 css-var-root"
       style="row-gap: 10px; gap: 10px;"
     >
       <button
-        class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
+        class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
         type="button"
       >
         <span>
@@ -34,7 +34,7 @@ exports[`App > should render correctly 1`] = `
       </button>
     </div>
     <button
-      class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+      class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
       type="button"
     >
       <span>
@@ -43,16 +43,16 @@ exports[`App > should render correctly 1`] = `
     </button>
   </div>
   <textarea
-    class="ant-input css-dev-only-do-not-override-1iftmj9 ant-input-outlined css-var-root ant-input-css-var"
+    class="ant-input css-dev-only-do-not-override-oc1rc0 ant-input-outlined css-var-root ant-input-css-var"
     placeholder="Input Data"
     rows="10"
   />
   <div
-    class="ant-layout css-dev-only-do-not-override-1iftmj9 css-var-root"
+    class="ant-layout css-dev-only-do-not-override-oc1rc0 css-var-root"
     style="row-gap: 10px; gap: 10px;"
   >
     <button
-      class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
+      class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-dropdown-trigger"
       type="button"
     >
       <span>
@@ -61,19 +61,19 @@ exports[`App > should render correctly 1`] = `
     </button>
   </div>
   <h3
-    class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+    class="ant-typography css-dev-only-do-not-override-oc1rc0 css-var-root"
   >
     To Format
   </h3>
   <div
-    class="ant-flex css-dev-only-do-not-override-1iftmj9 css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
+    class="ant-flex css-dev-only-do-not-override-oc1rc0 css-var-root ant-flex-align-center ant-flex-justify-center ant-flex-gap-middle"
     dir="column"
     style="display: inline-flex;"
   >
     <div
       aria-busy="true"
       aria-live="polite"
-      class="ant-spin ant-spin-lg ant-spin-spinning ant-spin-section css-dev-only-do-not-override-1iftmj9 css-var-root"
+      class="ant-spin ant-spin-lg ant-spin-spinning ant-spin-section css-dev-only-do-not-override-oc1rc0 css-var-root"
     >
       <span
         aria-label="loading"
@@ -96,7 +96,7 @@ exports[`App > should render correctly 1`] = `
       </span>
     </div>
     <article
-      class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+      class="ant-typography css-dev-only-do-not-override-oc1rc0 css-var-root"
     >
       Loading...
     </article>
