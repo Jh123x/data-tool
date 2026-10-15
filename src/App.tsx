@@ -10,7 +10,7 @@ import { getSettings } from "./Logic/resolver";
 import type { Settings } from "./Logic/types";
 import { PageTitle } from "./Components/PageTitle";
 import { Button, notification, Row, Typography } from "antd";
-import type { Data } from "./Components/types";
+import type { Data, SupportedLanguage } from "./Components/types";
 import { detectFormat } from "./Logic/auto_detect_format";
 import { GetSettings, SetSettings } from "./Logic/storage";
 import type { UserSettings } from "./Logic/user_settings";
@@ -114,7 +114,7 @@ const App = () => {
         <LanguageDropdown
           currSelection={fromLang.language}
           disabled={isAutoDetect}
-          setSelectedOption={(res) => setFromLang(getSettings(res))}
+          setSelectedOption={(res: SupportedLanguage) => setFromLang(getSettings(res))}
         />
         <Button
           onClick={() => {
@@ -127,7 +127,7 @@ const App = () => {
       <InputField placeholder="Input Data" setValue={setValue} value={value} />
       <LanguageDropdown
         currSelection={toLang.language}
-        setSelectedOption={(res) => setToLang(getSettings(res))}
+        setSelectedOption={(res: SupportedLanguage) => setToLang(getSettings(res))}
       />
       <OutputSection
         irValue={ir}

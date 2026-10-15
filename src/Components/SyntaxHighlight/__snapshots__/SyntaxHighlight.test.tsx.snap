@@ -7,7 +7,40 @@ exports[`SyntaxHighlight > should match snapshot 1`] = `
     data-lang="json"
     style="z-index: 0;"
   >
-    [{"test":"test2","test2":"test3"}]
+    <div>
+      <div
+        class="shj-numbers"
+      >
+        <div />
+      </div>
+      <div>
+        [{
+        <span
+          class="shj-syn-var"
+        >
+          "test"
+        </span>
+        :
+        <span
+          class="shj-syn-str"
+        >
+          "test2"
+        </span>
+        ,
+        <span
+          class="shj-syn-var"
+        >
+          "test2"
+        </span>
+        :
+        <span
+          class="shj-syn-str"
+        >
+          "test3"
+        </span>
+        }]
+      </div>
+    </div>
   </div>
 </DocumentFragment>
 `;
