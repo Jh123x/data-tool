@@ -4,26 +4,26 @@ exports[`CopyFormat > should match snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="ant-row css-dev-only-do-not-override-1iftmj9 css-var-root"
+      class="ant-row css-dev-only-do-not-override-oc1rc0 css-var-root"
       style="padding: 10px;"
     >
       <div
-        class="ant-col ant-col-8 css-dev-only-do-not-override-1iftmj9 css-var-root"
+        class="ant-col ant-col-8 css-dev-only-do-not-override-oc1rc0 css-var-root"
         style="padding: 5px;"
       >
         <div
-          class="ant-card ant-card-bordered css-dev-only-do-not-override-1iftmj9 css-var-root"
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-oc1rc0 css-var-root"
         >
           <div
             class="ant-card-body"
           >
             <article
-              class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+              class="ant-typography css-dev-only-do-not-override-oc1rc0 css-var-root"
             >
               JSON
             </article>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -31,7 +31,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -39,7 +39,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -47,7 +47,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -58,22 +58,22 @@ exports[`CopyFormat > should match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-col ant-col-8 css-dev-only-do-not-override-1iftmj9 css-var-root"
+        class="ant-col ant-col-8 css-dev-only-do-not-override-oc1rc0 css-var-root"
         style="padding: 5px;"
       >
         <div
-          class="ant-card ant-card-bordered css-dev-only-do-not-override-1iftmj9 css-var-root"
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-oc1rc0 css-var-root"
         >
           <div
             class="ant-card-body"
           >
             <article
-              class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+              class="ant-typography css-dev-only-do-not-override-oc1rc0 css-var-root"
             >
               CSV
             </article>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -81,7 +81,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -89,7 +89,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -97,7 +97,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -108,22 +108,22 @@ exports[`CopyFormat > should match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="ant-col ant-col-8 css-dev-only-do-not-override-1iftmj9 css-var-root"
+        class="ant-col ant-col-8 css-dev-only-do-not-override-oc1rc0 css-var-root"
         style="padding: 5px;"
       >
         <div
-          class="ant-card ant-card-bordered css-dev-only-do-not-override-1iftmj9 css-var-root"
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-oc1rc0 css-var-root"
         >
           <div
             class="ant-card-body"
           >
             <article
-              class="ant-typography css-dev-only-do-not-override-1iftmj9 css-var-root"
+              class="ant-typography css-dev-only-do-not-override-oc1rc0 css-var-root"
             >
               TSV
             </article>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -131,7 +131,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -139,7 +139,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
@@ -147,7 +147,7 @@ exports[`CopyFormat > should match snapshot 1`] = `
               </span>
             </button>
             <button
-              class="ant-btn css-dev-only-do-not-override-1iftmj9 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
+              class="ant-btn css-dev-only-do-not-override-oc1rc0 css-var-root ant-btn-default ant-btn-color-default ant-btn-variant-outlined"
               type="button"
             >
               <span>
