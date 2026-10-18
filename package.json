@@ -15,7 +15,7 @@
     "vite": "^8.3.1"
   },
   "devDependencies": {
-    "@remotion/bundler": "^4.0.529",
+    "@remotion/bundler": "^4.0.535",
     "remotion": "^4.0.527",
     "remotion-animated": "^2.2.0",
     "@remotion/cli": "^4.0.529",
